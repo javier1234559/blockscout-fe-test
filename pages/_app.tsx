@@ -22,6 +22,7 @@ import AppErrorBoundary from 'ui/shared/AppError/AppErrorBoundary';
 import GoogleAnalytics from 'ui/shared/GoogleAnalytics';
 import Layout from 'ui/shared/layout/Layout';
 import Web3ModalProvider from 'ui/shared/Web3ModalProvider';
+import './global.css';
 
 import 'lib/setLocale';
 // import 'focus-visible/dist/focus-visible';
