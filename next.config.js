@@ -43,7 +43,6 @@ const moduleExports = {
   rewrites,
   redirects,
   headers,
-  output: 'standalone',
   productionBrowserSourceMaps: true,
   experimental: {
     instrumentationHook: process.env.NEXT_OPEN_TELEMETRY_ENABLED === 'true',
