@@ -1,7 +1,18 @@
+const LocaleEnum = {
+  EN: 'en',
+  VI: 'vi',
+};
+
+const i18n = {
+  locales: [LocaleEnum.EN, LocaleEnum.VI],
+  defaultLocale: LocaleEnum.EN,
+};
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.BUNDLE_ANALYZER === 'true',
 });
 
+// @ts-ignore
 const withRoutes = require('nextjs-routes/config')({
   outDir: 'nextjs',
 });
@@ -28,7 +39,7 @@ const moduleExports = {
     config.module.rules.push(
       {
         test: /\.svg$/,
-        use: [ '@svgr/webpack' ],
+        use: ['@svgr/webpack'],
       },
     );
     config.resolve.fallback = { fs: false, net: false, tls: false };
@@ -56,6 +67,7 @@ const moduleExports = {
     //   },
     // },
   },
-};
+  i18n: i18n
+}
 
 module.exports = withBundleAnalyzer(withRoutes(moduleExports));
