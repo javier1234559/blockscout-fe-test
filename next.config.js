@@ -56,6 +56,7 @@ const moduleExports = {
   headers,
   productionBrowserSourceMaps: true,
   experimental: {
+    // forceSwcTransforms: true,
     instrumentationHook: process.env.NEXT_OPEN_TELEMETRY_ENABLED === 'true',
     // disabled as it is not stable yet
     // turbo: {
