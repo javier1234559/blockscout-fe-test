@@ -16,9 +16,6 @@ import { DefaultViewProps } from 'service/types/common'
 import { useRouter } from 'next/router'
 import { LocaleEnum } from 'service/types/locales'
 import { Button } from 'components/ui/button'
-import tw from 'twin.macro'
-import { css } from '@emotion/css'
-import twclass from 'service/utils/tw-class'
 
 const rollupFeature = config.features.rollup
 
@@ -53,10 +50,6 @@ const LanguageSwitcher: React.FC = () => {
 }
 
 
-const title = css`
-${tw`${'text-center !text-5xl font-semibold !text-blue-300 lg:!text-[4rem]'}`}
-`
-
 const Home = ({ dictionary }: DefaultViewProps) => {
   const isMobile = useIsMobile()
 
@@ -84,15 +77,6 @@ const Home = ({ dictionary }: DefaultViewProps) => {
                 >
                   {dictionary.Search}
                 </Button>
-              <button
-                className={css`
-                  ${tw`bg-purple-500`} &:hover {
-                    ${tw`bg-purple-400`}
-                  }
-                `}
-              >
-                Emotion + Tailwind
-              </button>
             </div>
           </div>
         </div>

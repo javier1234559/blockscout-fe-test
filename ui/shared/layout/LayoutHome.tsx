@@ -15,7 +15,7 @@ const LayoutHome = ({ children }: Props) => {
       <Layout.NavBar />
       <HeaderMobile hideSearchBar />
       <Layout.MainArea>
-        <Layout.SideBar />  
+        {/* <Layout.SideBar />   */}
         <Layout.MainColumn paddingTop={{ base: 3, lg: 6 }}>
           <HeaderAlert />
           <AppErrorBoundary>{children}</AppErrorBoundary>
