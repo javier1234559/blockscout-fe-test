@@ -49,54 +49,11 @@ const LanguageSwitcher: React.FC = () => {
   )
 }
 
-
 const Home = ({ dictionary }: DefaultViewProps) => {
   const isMobile = useIsMobile()
 
   return (
     <Box as="main">
-      <section>
-        <div className="bg-gradient-to-r from-[#a72168] to-[#36087d] pb-[3.5rem] pt-4">
-          <div className="container">
-            <p>Current locale: {dictionary.hello}</p>
-            <div className="flex justify-center">
-              <LanguageSwitcher />
-            </div>
-            {/* <Heading as="h1">{dictionary['Explore STO Blockchain']}</Heading> */}
-            <h1 className={title}>
-              {dictionary['Explore STO Blockchain']}
-            </h1>
-            <div className="relative mx-auto mt-[2.25rem] flex max-w-[680px]">
-              <input
-                className="min-h-[43px] flex-1 rounded border border-solid border-[#D8D8D8] bg-transparent px-4 text-sm text-white placeholder:text-[#A0A6B4] focus:outline-none"
-                placeholder="Search by Address/ Token symbol/ Name / Transaction hash / Block number"
-              />
-              <Button
-                  variant="primary"
-                  className="absolute right-[1px] top-[1px] h-[41px] rounded"
-                >
-                  {dictionary.Search}
-                </Button>
-            </div>
-          </div>
-        </div>
-        <div className="container flex flex-col gap-5 py-4">
-          {/* <div className="grid xl:grid-cols-3 xl:gap-5">
-          <Overview dictionary={dictionary} className="xl:col-span-2" />
-          <TransactionHistory dictionary={dictionary} />
-        </div>
-
-        <div className="flex flex-col gap-5 xl:flex-row">
-          <div className="flex-1">
-            <LatestBlocks dictionary={dictionary} />
-          </div>
-          <div className="flex-1">
-            <LatestTransactions dictionary={dictionary} />
-          </div>
-        </div> */}
-        </div>
-      </section>
-
       <Flex
         w="100%"
         background={config.UI.homepage.plate.background}
@@ -107,23 +64,18 @@ const Home = ({ dictionary }: DefaultViewProps) => {
         data-label="hero plate"
       >
         <Box flexGrow={1}>
-          <Flex
-            mb={{ base: 2, lg: 3 }}
-            justifyContent="space-between"
-            alignItems="center"
-            columnGap={2}
+          <Heading
+            as="h1"
+            fontSize={{ base: '2rem', lg: '3rem' }}
+            lineHeight={{ base: '24px', lg: '36px' }}
+            fontWeight={600}
+            textAlign="center"
+            color={config.UI.homepage.plate.textColor}
+            mb={8}
           >
-            <Heading
-              as="h1"
-              fontSize={{ base: '18px', lg: '30px' }}
-              lineHeight={{ base: '24px', lg: '36px' }}
-              fontWeight={{ base: 500, lg: 700 }}
-              color={config.UI.homepage.plate.textColor}
-            >
-              {config.meta.seo.enhancedDataEnabled
-                ? `${config.chain.name} blockchain explorer`
-                : `${config.chain.name} explorer`}
-            </Heading>
+            {dictionary['Explore STO Blockchain']}
+          </Heading>
+          {/* <Flex mb={{ base: 2, lg: 3 }} justifyContent="center" alignItems="center">
             {config.UI.navigation.layout === 'vertical' && (
               <Box display={{ base: 'none', lg: 'flex' }}>
                 {config.features.account.isEnabled && <ProfileMenuDesktop isHomePage />}
@@ -132,18 +84,11 @@ const Home = ({ dictionary }: DefaultViewProps) => {
                 )}
               </Box>
             )}
-          </Flex>
-          <SearchBar isHomepage />
+          </Flex> */}
+          <Box mx="auto" maxW={'680px'}>
+            <SearchBar isHomepage dictionary={dictionary} />
+          </Box>
         </Box>
-        {!isMobile && (
-          <AdBanner
-            platform="mobile"
-            w="fit-content"
-            flexShrink={0}
-            borderRadius="md"
-            overflow="hidden"
-          />
-        )}
       </Flex>
       <Flex
         flexDir={{ base: 'column', lg: 'row' }}
