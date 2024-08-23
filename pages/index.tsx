@@ -6,7 +6,6 @@ import PageNextJs from 'nextjs/PageNextJs'
 import { GetServerSideProps } from 'next'
 import Home from 'ui/pages/Home'
 import LayoutHome from 'ui/shared/layout/LayoutHome'
-import { useRouter } from 'next/router'
 import { getDictionary } from 'service/dictionaries/get-dictionary'
 import { LocaleEnum, LocaleKeys } from 'service/types/locales'
 import { base } from 'nextjs/getServerSideProps'
@@ -42,8 +41,8 @@ const Page: NextPageWithLayout<PageProps> = ({ dictionary }) => {
 }
 
 Page.getLayout = function getLayout(page: React.ReactElement) {
-  return <LayoutHome>{page}</LayoutHome>
-}
+  return <LayoutHome>{ page }</LayoutHome>;
+};
 
 export default Page
 
