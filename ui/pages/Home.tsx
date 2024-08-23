@@ -97,7 +97,7 @@ const Home = ({ dictionary }: DefaultViewProps) => {
         mt={3}
         _empty={{ mt: 0 }}
       >
-        <Stats />
+        <Stats dictionary={dictionary} />
         <ChainIndicators />
       </Flex>
       {isMobile && <AdBanner mt={6} mx="auto" display="flex" justifyContent="center" />}

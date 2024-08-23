@@ -6,13 +6,12 @@ import config from 'configs/app';
 
 const DeFiDropdown = dynamic(() => import('./DeFiDropdown'), {
   ssr: false,
-  loading: () => null
+  loading: () => null,
 });
 
 import NetworkMenu from './NetworkMenu';
 import Settings from './settings/Settings';
 import TopBarStats from './TopBarStats';
-
 
 const TopBar = () => {
   const bgColor = useColorModeValue('gray.50', 'whiteAlpha.100');
@@ -30,7 +29,7 @@ const TopBar = () => {
         { config.features.deFiDropdown.isEnabled && (
           <>
             <DeFiDropdown/>
-            {/* <Divider mr={ 3 } ml={{ base: 2, sm: 3 }} height={ 4 } orientation="vertical"/> */}
+            { /* <Divider mr={ 3 } ml={{ base: 2, sm: 3 }} height={ 4 } orientation="vertical"/> */ }
           </>
         ) }
         <Settings/>
