@@ -1,4 +1,4 @@
-import theme from '@/theme'
+import theme from 'service/theme'
 
 export const MEDIA_MAX_WIDTH = (width: string) => `(max-width: ${width})`
 

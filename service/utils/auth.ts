@@ -1,6 +1,6 @@
 'use client'
 
-import LocalStorageKeys from '@/constants/local-storage-keys'
+import LocalStorageKeys from 'service/constants/local-storage-keys'
 
 export const getToken = () => localStorage.getItem(LocalStorageKeys.Token)
 

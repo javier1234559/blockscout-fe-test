@@ -2,22 +2,21 @@ import { memo, useState } from 'react'
 import isEqual from 'react-fast-compare'
 import { AlignJustify } from 'lucide-react'
 
-import AppLink from '@/components/common/app-link'
+import AppLink from 'components/common/app-link'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion'
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+} from 'components/ui/accordion'
+import { Button } from 'components/ui/button'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from 'components/ui/sheet'
 
-import { useDictionary } from '@/providers/dictionary'
 
 import { getMenuItems } from '../data'
+import { DefaultViewProps } from 'service/types/common'
 
-function MenuHamburger() {
-  const { dictionary } = useDictionary()
+function MenuHamburger({ dictionary }: DefaultViewProps) {
 
   const menuItems = getMenuItems(dictionary)
 

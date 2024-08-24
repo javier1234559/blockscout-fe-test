@@ -3,13 +3,11 @@ import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 import Image from 'next/image'
 
-import AppIcon from '@/components/common/app-icon'
-import AppLink from '@/components/common/app-link'
-
-import RouteNames from '@/constants/routes'
-import { DefaultViewProps } from '@/types/common'
-
 import LanguageSelect from './language-select'
+import AppIcon from 'components/common/app-icon'
+import AppLink from 'components/common/app-link'
+import { DefaultViewProps } from 'service/types/common'
+import RouteNames from 'service/constants/routes'
 
 const SOCIAL_LINKS = [
   {
@@ -45,7 +43,7 @@ const FOOTER_LINKS = [
 
 function Footer({ dictionary }: DefaultViewProps) {
   return (
-    <footer className="w-full bg-black-footer p-5 text-xs leading-snug">
+    <footer className="bg-black-footer w-full p-5 text-xs leading-snug">
       <div className="container">
         <div className="flex items-center justify-center gap-[20px] md:justify-start">
           <AppLink href={RouteNames.Home}>
@@ -64,13 +62,13 @@ function Footer({ dictionary }: DefaultViewProps) {
                 width="21"
                 height="22"
                 viewBox="0 0 21 22"
-                className="h-5 w-5 text-gray-icon "
+                className="text-gray-icon h-5 w-5"
               />
             </a>
           ))}
         </div>
 
-        <div className="mb-2 mt-10 flex flex-col items-center justify-start text-gray-icon md:flex-row md:justify-between">
+        <div className="text-gray-icon mb-2 mt-10 flex flex-col items-center justify-start md:flex-row md:justify-between">
           <h4 className="text-center md:text-left">
             {dictionary['Copyright © 2024 STO Chain. All Rights Reserved.']}
           </h4>

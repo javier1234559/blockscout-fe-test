@@ -3,21 +3,19 @@
 import { memo, useEffect, useState } from 'react'
 import isEqual from 'react-fast-compare'
 import { usePathname } from 'next/navigation'
-import { useMediaQuery } from 'usehooks-ts'
-
-import { useDictionary } from '@/providers/dictionary'
-import { LocaleEnum } from '@/types/locales'
-import { cn } from '@/utils/cn'
-import { MEDIA_MAX_WIDTH_KEYS } from '@/utils/media-queries'
 
 import MobileHeader from './mobile'
 import PCHeader from './pc'
+import { useMediaQuery } from '@chakra-ui/react'
+import { MEDIA_MAX_WIDTH_KEYS } from 'service/utils/media-queries'
+import { LocaleEnum } from 'service/types/locales'
+import { cn } from 'service/utils/cn'
+import { DefaultViewProps } from 'service/types/common'
 
-function Header() {
+function Header({ dictionary }: DefaultViewProps) {
   const pathname = usePathname()
 
   // Hooks
-  const { dictionary } = useDictionary()
   const isBelowXl = useMediaQuery(MEDIA_MAX_WIDTH_KEYS.XL)
 
   // States
@@ -55,7 +53,7 @@ function Header() {
       })}
     >
       <div className="container">
-        {isBelowXl ? (
+        {!isBelowXl ? (
           <MobileHeader dictionary={dictionary} />
         ) : (
           <PCHeader dictionary={dictionary} />

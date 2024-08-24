@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import * as React from 'react'
 
-import { cn } from '@/utils/cn'
+import { cn } from 'service/utils/cn'
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 

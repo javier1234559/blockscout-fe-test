@@ -1,7 +1,7 @@
 import React, { SVGProps } from 'react'
 import isEqual from 'react-fast-compare'
+import { cn } from 'service/utils/cn'
 
-import { cn } from '@/utils/cn'
 
 interface IAppIconProps extends SVGProps<SVGSVGElement> {
   src: string

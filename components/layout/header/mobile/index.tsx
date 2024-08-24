@@ -1,13 +1,12 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 
-import Logo from '@/components/common/logo'
-
-import { DefaultViewProps } from '@/types/common'
 
 import TestnetBtn from '../testnet-btn'
 
 import MenuHamburger from './menu-hamburger'
+import { DefaultViewProps } from 'service/types/common'
+import Logo from 'components/common/logo'
 
 function MobileHeader({ dictionary }: DefaultViewProps) {
   return (

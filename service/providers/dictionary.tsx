@@ -2,7 +2,7 @@
 
 import React, { createContext, useState } from 'react'
 
-import { LocaleKeys } from '@/types/locales'
+import { LocaleKeys } from 'service/types/locales'
 
 interface DictionaryContextType {
   dictionary: LocaleKeys

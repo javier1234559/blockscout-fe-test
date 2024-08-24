@@ -1,10 +1,10 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 
-import { Button } from '@/components/ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Button } from 'components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover'
+import { DefaultViewProps } from 'service/types/common'
 
-import { DefaultViewProps } from '@/types/common'
 
 function TestnetBtn({ dictionary }: DefaultViewProps) {
   return (

@@ -41,7 +41,7 @@ const Page: NextPageWithLayout<PageProps> = ({ dictionary }) => {
 }
 
 Page.getLayout = function getLayout(page: React.ReactElement) {
-  return <LayoutHome>{ page }</LayoutHome>;
+  return <LayoutHome dictionary="en" >{ page }</LayoutHome>;
 };
 
 export default Page

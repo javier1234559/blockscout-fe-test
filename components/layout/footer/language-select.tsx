@@ -3,11 +3,10 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 import { usePathname, useRouter } from 'next/navigation'
+import AppIcon from 'components/common/app-icon'
+import { LocaleEnum } from 'service/types/locales'
+import { Select, SelectContent, SelectItem, SelectTrigger } from 'components/ui/select'
 
-import AppIcon from '@/components/common/app-icon'
-import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
-
-import { LocaleEnum } from '@/types/locales'
 
 function FooterLanguageSelect() {
   const pathname = usePathname()

@@ -1,11 +1,9 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 
-import Logo from '@/components/common/logo'
-
-import { DefaultViewProps } from '@/types/common'
-
 import PCNavbar from './navbar'
+import { DefaultViewProps } from 'service/types/common'
+import Logo from 'components/common/logo'
 
 function PCHeader({ dictionary }: DefaultViewProps) {
   return (
