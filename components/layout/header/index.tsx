@@ -10,7 +10,6 @@ import { useMediaQuery } from '@chakra-ui/react'
 import { MEDIA_MAX_WIDTH_KEYS } from 'service/utils/media-queries'
 import { LocaleEnum } from 'service/types/locales'
 import { cn } from 'service/utils/cn'
-import { DefaultViewProps } from 'service/types/common'
 
 function Header() {
   const pathname = usePathname()

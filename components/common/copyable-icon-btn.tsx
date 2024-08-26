@@ -3,12 +3,13 @@
 import { memo, MouseEvent, useCallback } from 'react'
 import isEqual from 'react-fast-compare'
 import { Button, useToast, useClipboard } from '@chakra-ui/react'
+import { useTranslation } from 'next-i18next'
 
 import AppIcon from './app-icon'
-import { useDictionary } from 'service/providers/dictionary'
 
 function CopyableIconBtn({ value }: { value: string }) {
-  const { dictionary } = useDictionary()
+  const { t } = useTranslation()
+
   const toast = useToast()
   const { onCopy } = useClipboard(value)
 
@@ -16,13 +17,13 @@ function CopyableIconBtn({ value }: { value: string }) {
     (event: MouseEvent<HTMLButtonElement>) => {
       onCopy()
       toast({
-        title: dictionary['Copy Succeeded'],
+        title: t('Copy Succeeded'),
         status: 'success',
         duration: 2000,
         isClosable: true,
       })
     },
-    [onCopy, dictionary, toast],
+    [onCopy, toast],
   )
 
   return (
@@ -30,7 +31,7 @@ function CopyableIconBtn({ value }: { value: string }) {
       type="button"
       onClick={handleSelectTier}
       aria-label="copy"
-      className="flex h-7 w-7 flex-shrink-0 items-center justify-center self-baseline rounded-full !bg-pink-opacity p-0 !text-pink"
+      className="!bg-pink-opacity !text-pink flex h-7 w-7 flex-shrink-0 items-center justify-center self-baseline rounded-full p-0"
     >
       <AppIcon
         src="/svg/icons/copy.svg#id"
