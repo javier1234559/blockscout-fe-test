@@ -8,10 +8,10 @@ import MenuHamburger from './menu-hamburger'
 import { DefaultViewProps } from 'service/types/common'
 import Logo from 'components/common/logo'
 
-function MobileHeader({ dictionary }: DefaultViewProps) {
+function MobileHeader() {
   return (
     <div className="flex items-center justify-between">
-      <TestnetBtn dictionary={dictionary} />
+      <TestnetBtn/>
 
       <Logo />
 

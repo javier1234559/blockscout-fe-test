@@ -5,12 +5,12 @@ import PCNavbar from './navbar'
 import { DefaultViewProps } from 'service/types/common'
 import Logo from 'components/common/logo'
 
-function PCHeader({ dictionary }: DefaultViewProps) {
+function PCHeader() {
   return (
     <div className="flex items-center justify-between">
       <Logo />
 
-      <PCNavbar dictionary={dictionary} />
+      <PCNavbar/>
     </div>
   )
 }

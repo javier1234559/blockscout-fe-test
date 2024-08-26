@@ -23,16 +23,13 @@ export function middleware(req: NextRequest) {
 
   middlewares.colorTheme(req, res);
 
-  // Apply locale middleware
-  const finalResponse = middlewares.locale(req,res);
-
   const end = Date.now();
 
   // res.headers.append('Content-Security-Policy', cspPolicy);
   res.headers.append('Server-Timing', `middleware;dur=${ end - start }`);
   res.headers.append('Docker-ID', process.env.HOSTNAME || '');
 
-  return finalResponse;
+  return res;
 }
 
 /**

@@ -12,72 +12,15 @@ import AdBanner from 'ui/shared/ad/AdBanner'
 import ProfileMenuDesktop from 'ui/snippets/profileMenu/ProfileMenuDesktop'
 import SearchBar from 'ui/snippets/searchBar/SearchBar'
 import WalletMenuDesktop from 'ui/snippets/walletMenu/WalletMenuDesktop'
-import { DefaultViewProps } from 'service/types/common'
-import { useRouter } from 'next/router'
-import { LocaleEnum } from 'service/types/locales'
-import { Button } from 'components/ui/button'
 
 const rollupFeature = config.features.rollup
 
-const LanguageSwitcher: React.FC = () => {
-  const router = useRouter()
-  const { locale, pathname, asPath, query } = router
 
-  const languageLabels: Record<LocaleEnum, string> = {
-    [LocaleEnum.EN]: 'English',
-    [LocaleEnum.VI]: 'Tiếng Việt',
-  }
-
-  const changeLanguage = (newLocale: LocaleEnum) => {
-    router.push({ pathname, query }, asPath, { locale: newLocale })
-  }
-
-  return (
-    <div className="mt-4">
-      {Object.values(LocaleEnum).map((lang) => (
-        <button
-          key={lang}
-          onClick={() => changeLanguage(lang)}
-          className={`mr-2 rounded px-4 py-2 ${
-            locale === lang ? 'bg-blue-500 text-white' : 'bg-gray-200'
-          }`}
-        >
-          {languageLabels[lang]}
-        </button>
-      ))}
-    </div>
-  )
-}
-
-
-const Home = ({ dictionary }: DefaultViewProps) => {
+const Home = () => {
   const isMobile = useIsMobile()
 
   return (
     <Box as="main">
-      <section>
-        <div className="bg-gradient-to-r from-[#a72168] to-[#36087d] pb-[3.5rem] pt-4">
-          <div className="container">
-            <p>Current locale: {dictionary.hello}</p>
-            <div className="flex justify-center">
-              <LanguageSwitcher />
-            </div>
-            <Heading as="h1">{dictionary['Explore STO Blockchain']}</Heading>
-            <div className="relative mx-auto mt-[2.25rem] flex max-w-[680px]">
-              <input
-                className="min-h-[43px] flex-1 rounded border border-solid border-[#D8D8D8] bg-transparent px-4 text-sm text-white placeholder:text-[#A0A6B4] focus:outline-none"
-                placeholder="Search by Address/ Token symbol/ Name / Transaction hash / Block number"
-              />
-              <Button
-                  variant="primary"
-                  className="absolute right-[1px] top-[1px] h-[41px] rounded"
-                >
-                  {dictionary.Search}
-                </Button>
-            </div>
-          </div>
-        </div>
-      </section>
       <Flex
         w="100%"
         background={config.UI.homepage.plate.background}

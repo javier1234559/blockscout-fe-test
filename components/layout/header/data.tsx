@@ -1,7 +1,6 @@
-import { LocaleKeys } from 'service/types/locales'
 
-export const getMenuItems = (dictionary: LocaleKeys) => [
-  { title: 'Home', link: '/' },
+export const getMenuItems = (t: any) => [
+  { title: t('Home') , link: '/' },
   {
     title: 'Blockchain',
     link: undefined,

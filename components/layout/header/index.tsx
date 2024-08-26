@@ -12,7 +12,7 @@ import { LocaleEnum } from 'service/types/locales'
 import { cn } from 'service/utils/cn'
 import { DefaultViewProps } from 'service/types/common'
 
-function Header({ dictionary }: DefaultViewProps) {
+function Header() {
   const pathname = usePathname()
 
   // Hooks
@@ -54,9 +54,9 @@ function Header({ dictionary }: DefaultViewProps) {
     >
       <div className="container">
         {!isBelowXl ? (
-          <MobileHeader dictionary={dictionary} />
+          <MobileHeader  />
         ) : (
-          <PCHeader dictionary={dictionary} />
+          <PCHeader />
         )}
       </div>
     </header>

@@ -25,6 +25,7 @@ import Web3ModalProvider from 'ui/shared/Web3ModalProvider';
 import './global.css';
 
 import 'lib/setLocale';
+import { appWithTranslation } from 'next-i18next';
 // import 'focus-visible/dist/focus-visible';
 
 type AppPropsWithLayout = AppProps & {
@@ -84,4 +85,4 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);;

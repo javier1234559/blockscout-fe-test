@@ -12,13 +12,13 @@ import {
 import { Button } from 'components/ui/button'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from 'components/ui/sheet'
 
-
+import { useTranslation } from 'next-i18next';
 import { getMenuItems } from '../data'
-import { DefaultViewProps } from 'service/types/common'
 
-function MenuHamburger({ dictionary }: DefaultViewProps) {
+function MenuHamburger() {
+  const { t } = useTranslation()
 
-  const menuItems = getMenuItems(dictionary)
+  const menuItems = getMenuItems(t)
 
   const [openSheet, setOpenSheet] = useState(false)
 
@@ -34,7 +34,7 @@ function MenuHamburger({ dictionary }: DefaultViewProps) {
       </SheetTrigger>
       <SheetContent className="border-none">
         <SheetHeader>
-          <SheetTitle>{dictionary.Menu}</SheetTitle>
+          <SheetTitle>{t('Menu')}</SheetTitle>
 
           <div className="!mt-10">
             <Accordion type="multiple" className="w-full">
