@@ -1,0 +1,14 @@
+const DATE_FORMAT_STRING = {
+  DEFAULT: 'dd/MM/yyyy',
+  DEFAULT_WITH_SLASH: 'dd-MM-yyyy',
+  DEFAULT_WITH_SLASH_WITH_TIME: 'yyyy-MM-dd HH:mm',
+  DATE_WITH_TIME: 'dd/MM/yyyy HH:mm',
+  DATE_WITH_MONTH_IN_SHORT_TEXT: 'dd MMM yyyy',
+  DATE_WITH_YEAR_FIRST: 'yyyy-MM-dd',
+  DATE_WITH_MONTH_FIRST: 'MM/dd/yyyy',
+  DATE_WITH_MONTH_FIRST_WITH_TIME: 'MM/dd/yyyy HH:mm a',
+  ONLY_MONTH_AND_DATE: 'dd-MM',
+  ONLY_HOUR_MINUTE: 'HH:mm',
+}
+
+export default DATE_FORMAT_STRING

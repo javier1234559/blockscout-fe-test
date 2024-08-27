@@ -6,3 +6,6 @@ deploy/tools/envs-validator/index.js
 deploy/tools/feature-reporter/build/**
 deploy/tools/feature-reporter/index.js
 public/**
+
+
+/components/ui/**

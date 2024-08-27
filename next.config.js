@@ -1,3 +1,5 @@
+const { i18n } = require('./next-i18next.config');
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.BUNDLE_ANALYZER === 'true',
 });
@@ -14,6 +16,8 @@ const rewrites = require('./nextjs/rewrites');
 
 /** @type {import('next').NextConfig} */
 const moduleExports = {
+  // i18n
+  i18n,
   transpilePackages: [
     'react-syntax-highlighter',
     'swagger-client',
@@ -30,7 +34,7 @@ const moduleExports = {
     config.module.rules.push(
       {
         test: /\.svg$/,
-        use: [ '@svgr/webpack' ],
+        use: ['@svgr/webpack'],
       },
     );
     config.resolve.fallback = { fs: false, net: false, tls: false };
@@ -47,6 +51,7 @@ const moduleExports = {
   headers,
   productionBrowserSourceMaps: true,
   experimental: {
+    // forceSwcTransforms: true,
     instrumentationHook: process.env.NEXT_OPEN_TELEMETRY_ENABLED === 'true',
     // disabled as it is not stable yet
     // turbo: {
@@ -57,7 +62,7 @@ const moduleExports = {
     //     },
     //   },
     // },
-  },
-};
+  }
+}
 
 module.exports = withBundleAnalyzer(withRoutes(moduleExports));
