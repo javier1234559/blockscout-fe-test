@@ -1,26 +1,51 @@
-import { Button } from 'components/ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover'
-import { useTranslation } from 'next-i18next';
+import { Popover, PopoverContent, PopoverTrigger } from "components/ui/popover";
+import { useTranslation } from "next-i18next";
+import { Text, Button } from "@chakra-ui/react";
 
 function TestnetBtn() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Popover>
       <PopoverTrigger>
-        <button
+        <Button
           type="button"
-          className="rounded-md border-none bg-white py-[0.125rem] pl-[0.125rem] pr-[0.125rem] md:pr-3"
+          bg="white"
+          height="auto"
+          borderRadius="sm"
+          border="none"
+          py="0.125rem"
+          pl="0.125rem"
+          pr={{ base: "0.125rem", md: "0.75rem" }}
+          _hover={{ bg: "gray.100" }}
         >
           <div className="flex items-center gap-3">
-            <div className="rounded bg-primary px-2 py-[0.3125rem] text-sm font-normal capitalize leading-tight text-white">
-              Testnet
-            </div>
-            <div className="hidden font-heading text-base font-normal leading-tight text-pink-500 md:block">
-              {t('STO Chain')}
-            </div>
+            <Text
+              as="span"
+              bg="#ff2ca8"
+              color="white"
+              fontSize="sm"
+              fontWeight="normal"
+              lineHeight="tight"
+              px={2}
+              py="0.3125rem"
+              borderRadius="sm"
+              textTransform="capitalize"
+            >
+              {t("Testnet")}
+            </Text>
+            <Text
+              fontFamily="heading"
+              fontSize="base"
+              fontWeight="normal"
+              lineHeight="tight"
+              color="#ff2ca8"
+              display={{ base: "none", md: "block" }}
+            >
+              {t("STO Chain")}
+            </Text>
           </div>
-        </button>
+        </Button>
       </PopoverTrigger>
       <PopoverContent
         align="end"
@@ -47,15 +72,15 @@ function TestnetBtn() {
 
         <div className="flex flex-col gap-2">
           <Button variant="primary" size="sm">
-            {t('View More Networks')}
+            {t("View More Networks")}
           </Button>
           <Button variant="outline" size="sm">
-            {t('Join Subscan')}
+            {t("Join Subscan")}
           </Button>
         </div>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
 
 export default TestnetBtn;

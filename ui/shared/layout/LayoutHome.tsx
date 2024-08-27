@@ -11,17 +11,12 @@ import Header from 'components/layout/header'
 const LayoutHome = ({ children }: Props) => {
   return (
     <Layout.Container>
-      <Layout.TopRow />
-      <Layout.NavBar />
+      {/* <Layout.TopRow />
+      <Layout.NavBar /> */}
       <Header />
-      <HeaderMobile hideSearchBar />
-      <Layout.MainArea>
-        {/* <Layout.SideBar />   */}
-        <Layout.MainColumn paddingTop={{ base: 3, lg: 6 }}>
-          <HeaderAlert />
-          <AppErrorBoundary>{children}</AppErrorBoundary>
-        </Layout.MainColumn>
-      </Layout.MainArea>
+      {/* <HeaderMobile hideSearchBar /> */}
+      {/* <HeaderAlert /> */}
+      <AppErrorBoundary>{children}</AppErrorBoundary>
       <Layout.Footer />
     </Layout.Container>
   )
