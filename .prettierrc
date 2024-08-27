@@ -1,5 +1,4 @@
 {
-  "arrowParens": "always",
   "bracketSameLine": false,
   "bracketSpacing": true,
   "semi": false,
@@ -18,5 +17,7 @@
   "tabWidth": 2,
   "useTabs": false,
   "embeddedLanguageFormatting": "auto",
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
 }
