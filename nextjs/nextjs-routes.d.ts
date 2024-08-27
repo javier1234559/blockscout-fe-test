@@ -87,8 +87,8 @@ declare module "nextjs-routes" {
   >["query"];
 
   export type Locale = 
-    | "en"
-    | "vi";
+    | "vi"
+    | "en";
 
   /**
    * A typesafe utility function for generating paths in your application.
@@ -165,8 +165,8 @@ declare module "next/router" {
         domainLocales?: undefined;
         locale: Locale;
         locales: [
-          "en",
-          "vi"
+          "vi",
+          "en"
         ];
         push(
           url: Route | StaticRoute | Query,

@@ -1,18 +1,15 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 
-import Logo from '@/components/common/logo'
-
-import { DefaultViewProps } from '@/types/common'
-
 import PCNavbar from './navbar'
+import Logo from 'components/common/logo'
 
-function PCHeader({ dictionary }: DefaultViewProps) {
+function PCHeader() {
   return (
     <div className="flex items-center justify-between">
       <Logo />
 
-      <PCNavbar dictionary={dictionary} />
+      <PCNavbar/>
     </div>
   )
 }

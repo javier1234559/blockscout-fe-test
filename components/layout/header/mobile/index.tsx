@@ -1,18 +1,16 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 
-import Logo from '@/components/common/logo'
-
-import { DefaultViewProps } from '@/types/common'
 
 import TestnetBtn from '../testnet-btn'
 
 import MenuHamburger from './menu-hamburger'
+import Logo from 'components/common/logo'
 
-function MobileHeader({ dictionary }: DefaultViewProps) {
+function MobileHeader() {
   return (
     <div className="flex items-center justify-between">
-      <TestnetBtn dictionary={dictionary} />
+      <TestnetBtn/>
 
       <Logo />
 

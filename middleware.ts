@@ -1,10 +1,10 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-import generateCspPolicy from 'nextjs/csp/generateCspPolicy';
+// import generateCspPolicy from 'nextjs/csp/generateCspPolicy';
 import * as middlewares from 'nextjs/middlewares/index';
 
-const cspPolicy = generateCspPolicy();
+// const cspPolicy = generateCspPolicy();
 
 export function middleware(req: NextRequest) {
   const isPageRequest = req.headers.get('accept')?.includes('text/html');
@@ -23,16 +23,13 @@ export function middleware(req: NextRequest) {
 
   middlewares.colorTheme(req, res);
 
-  // Apply locale middleware
-  const finalResponse = middlewares.locale(req,res);
-
   const end = Date.now();
 
-  finalResponse.headers.append('Content-Security-Policy', cspPolicy);
-  finalResponse.headers.append('Server-Timing', `middleware;dur=${ end - start }`);
-  finalResponse.headers.append('Docker-ID', process.env.HOSTNAME || '');
+  // res.headers.append('Content-Security-Policy', cspPolicy);
+  res.headers.append('Server-Timing', `middleware;dur=${ end - start }`);
+  res.headers.append('Docker-ID', process.env.HOSTNAME || '');
 
-  return finalResponse;
+  return res;
 }
 
 /**

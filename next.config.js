@@ -1,17 +1,10 @@
-const LocaleEnum = {
-  EN: 'en',
-  VI: 'vi',
-};
-
-const i18n = {
-  locales: [LocaleEnum.EN, LocaleEnum.VI],
-  defaultLocale: LocaleEnum.EN,
-};
+const { i18n } = require('./next-i18next.config');
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.BUNDLE_ANALYZER === 'true',
 });
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const withRoutes = require('nextjs-routes/config')({
   outDir: 'nextjs',
@@ -23,6 +16,8 @@ const rewrites = require('./nextjs/rewrites');
 
 /** @type {import('next').NextConfig} */
 const moduleExports = {
+  // i18n
+  i18n,
   transpilePackages: [
     'react-syntax-highlighter',
     'swagger-client',
@@ -67,8 +62,7 @@ const moduleExports = {
     //     },
     //   },
     // },
-  },
-  i18n: i18n
+  }
 }
 
 module.exports = withBundleAnalyzer(withRoutes(moduleExports));

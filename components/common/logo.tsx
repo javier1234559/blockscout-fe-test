@@ -1,11 +1,10 @@
 import { memo } from 'react'
 import isEqual from 'react-fast-compare'
 import Image from 'next/image'
+import RouteNames from 'service/constants/routes'
+import AppLink from 'components/common/app-link'
+import { cn } from 'service/utils/cn'
 
-import AppLink from '@/components/common/app-link'
-
-import RouteNames from '@/constants/routes'
-import { cn } from '@/utils/cn'
 
 interface Props {
   className?: string

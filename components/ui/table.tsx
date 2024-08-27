@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import * as React from "react"
 
-import { cn } from "@/utils/cn"
+import { cn } from 'service/utils/cn'
 
 const Table = React.forwardRef<
   HTMLTableElement,

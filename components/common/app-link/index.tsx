@@ -6,9 +6,9 @@ import React from 'react'
 import isEqual from 'react-fast-compare'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { LocaleEnum } from 'service/types/locales'
+import { cn } from 'service/utils/cn'
 
-import { LocaleEnum } from '@/types/locales'
-import { cn } from '@/utils/cn'
 
 interface Props {
   href: string
@@ -30,7 +30,7 @@ function AppLink(props: React.PropsWithChildren<Props>) {
   return (
     <Link
       {...others}
-      href={finalLink}
+      href={finalLink as any}
       key={uuid}
       onClick={onClick}
       className={cn('duration-300', className)}

@@ -1,12 +1,10 @@
-import { memo } from 'react'
-import isEqual from 'react-fast-compare'
+import { Button } from 'components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover'
+import { useTranslation } from 'next-i18next';
 
-import { Button } from '@/components/ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+function TestnetBtn() {
+  const { t } = useTranslation()
 
-import { DefaultViewProps } from '@/types/common'
-
-function TestnetBtn({ dictionary }: DefaultViewProps) {
   return (
     <Popover>
       <PopoverTrigger>
@@ -19,7 +17,7 @@ function TestnetBtn({ dictionary }: DefaultViewProps) {
               Testnet
             </div>
             <div className="hidden font-heading text-base font-normal leading-tight text-pink-500 md:block">
-              {dictionary['STO Chain']}
+              {t('STO Chain')}
             </div>
           </div>
         </button>
@@ -49,10 +47,10 @@ function TestnetBtn({ dictionary }: DefaultViewProps) {
 
         <div className="flex flex-col gap-2">
           <Button variant="primary" size="sm">
-            {dictionary['View More Networks']}
+            {t('View More Networks')}
           </Button>
           <Button variant="outline" size="sm">
-            {dictionary['Join Subscan']}
+            {t('Join Subscan')}
           </Button>
         </div>
       </PopoverContent>
@@ -60,4 +58,4 @@ function TestnetBtn({ dictionary }: DefaultViewProps) {
   )
 }
 
-export default memo(TestnetBtn, isEqual)
+export default TestnetBtn;

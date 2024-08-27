@@ -1,16 +1,12 @@
-import { memo } from 'react'
-import isEqual from 'react-fast-compare'
-
-import AppLink from '@/components/common/app-link'
-import MenuItem from '@/components/common/menu-item'
-
-import { DefaultViewProps } from '@/types/common'
-
+import AppLink from 'components/common/app-link'
+import MenuItem from 'components/common/menu-item'
+import { useTranslation } from 'next-i18next';
 import { getMenuItems } from '../data'
 import TestnetBtn from '../testnet-btn'
 
-function PCNavbar({ dictionary }: DefaultViewProps) {
-  const menuItems = getMenuItems(dictionary)
+function PCNavbar() {
+  const { t } = useTranslation()
+  const menuItems = getMenuItems(t)
 
   return (
     <nav>
@@ -31,11 +27,11 @@ function PCNavbar({ dictionary }: DefaultViewProps) {
           )
         })}
         <li>
-          <TestnetBtn dictionary={dictionary} />
+          <TestnetBtn/>
         </li>
       </ul>
     </nav>
   )
 }
 
-export default memo(PCNavbar, isEqual)
+export default PCNavbar

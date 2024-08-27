@@ -2,24 +2,23 @@ import { memo, useState } from 'react'
 import isEqual from 'react-fast-compare'
 import { AlignJustify } from 'lucide-react'
 
-import AppLink from '@/components/common/app-link'
+import AppLink from 'components/common/app-link'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion'
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+} from 'components/ui/accordion'
+import { Button } from 'components/ui/button'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from 'components/ui/sheet'
 
-import { useDictionary } from '@/providers/dictionary'
-
+import { useTranslation } from 'next-i18next';
 import { getMenuItems } from '../data'
 
 function MenuHamburger() {
-  const { dictionary } = useDictionary()
+  const { t } = useTranslation()
 
-  const menuItems = getMenuItems(dictionary)
+  const menuItems = getMenuItems(t)
 
   const [openSheet, setOpenSheet] = useState(false)
 
@@ -35,7 +34,7 @@ function MenuHamburger() {
       </SheetTrigger>
       <SheetContent className="border-none">
         <SheetHeader>
-          <SheetTitle>{dictionary.Menu}</SheetTitle>
+          <SheetTitle>{t('Menu')}</SheetTitle>
 
           <div className="!mt-10">
             <Accordion type="multiple" className="w-full">

@@ -1,4 +1,4 @@
-import AppLink from '@/components/common/app-link'
+import AppLink from 'components/common/app-link'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -7,7 +7,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu'
+} from 'components/ui/navigation-menu'
 
 interface Props {
   children: React.ReactNode
