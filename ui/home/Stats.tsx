@@ -10,14 +10,15 @@ import GasInfoTooltip from 'ui/shared/gas/GasInfoTooltip'
 import GasPrice from 'ui/shared/gas/GasPrice'
 import IconSvg from 'ui/shared/IconSvg'
 import StatsWidget from 'ui/shared/stats/StatsWidget'
-import { DefaultViewProps } from 'service/types/common'
 import { FormatNumber } from 'service/utils/formater'
 import AppIcon from 'components/common/app-icon'
-
+import { useTranslation } from 'next-i18next'
 const hasAvgBlockTime = config.UI.homepage.showAvgBlockTime
 const rollupFeature = config.features.rollup
 
-const Stats = ({ dictionary }: DefaultViewProps) => {
+const Stats = () => {
+  const { t } = useTranslation()
+
   const [hasGasTracker, setHasGasTracker] = React.useState(config.features.gasTracker.isEnabled)
   const { data, isPlaceholderData, isError, dataUpdatedAt } = useApiQuery('stats', {
     queryOptions: {
@@ -188,10 +189,10 @@ const Stats = ({ dictionary }: DefaultViewProps) => {
           viewBox="0 0 20 20"
           className="h-5 w-5 flex-shrink-0 opacity-60"
         />
-        <h6>{dictionary.Overview}</h6>
+        <h6>{t('Overview')}</h6>
       </div>
 
-      <div className="bg-background-bg-2 grid grid-cols-2 rounded-md border border-stroke-line p-3 xl:grid-cols-3">
+      <div className="bg-background-bg-2 border-stroke-line grid grid-cols-2 rounded-md border p-3 xl:grid-cols-3">
         <div className="flex items-center gap-3 md:py-4">
           <AppIcon
             src="/svg/icons/container.svg#id"
@@ -202,7 +203,7 @@ const Stats = ({ dictionary }: DefaultViewProps) => {
           />
 
           <div>
-            <h4 className="text-h4/medium uppercase text-primary">STOCK {dictionary.Price}</h4>
+            <h4 className="text-h4/medium text-primary uppercase">STOCK {t('Price')}</h4>
 
             <span>N/A</span>
           </div>
@@ -218,9 +219,7 @@ const Stats = ({ dictionary }: DefaultViewProps) => {
           />
 
           <div>
-            <h4 className="text-h4/medium uppercase text-primary">
-              STOCK {dictionary['Total Blocks']}
-            </h4>
+            <h4 className="text-h4/medium text-primary uppercase">STOCK {t('Total Blocks')}</h4>
 
             <span>{FormatNumber.numberWithCommas(9167699)}</span>
           </div>
@@ -228,7 +227,7 @@ const Stats = ({ dictionary }: DefaultViewProps) => {
 
         <div className="flex items-center gap-3 py-4">
           <div>
-            <h4 className="text-h4/medium uppercase text-primary">{dictionary['Gas Tracker']}</h4>
+            <h4 className="text-h4/medium text-primary uppercase">{t('Gas Tracker')}</h4>
 
             <div className="flex items-center gap-1">
               <span>10.0 Gwei</span>
@@ -254,9 +253,7 @@ const Stats = ({ dictionary }: DefaultViewProps) => {
           />
 
           <div>
-            <h4 className="text-h4/medium uppercase text-primary">
-              STOC {dictionary['Market Cap']}
-            </h4>
+            <h4 className="text-h4/medium text-primary uppercase">STOC {t('Market Cap')}</h4>
 
             <span>$0.00 USD</span>
           </div>
@@ -272,7 +269,7 @@ const Stats = ({ dictionary }: DefaultViewProps) => {
           />
 
           <div>
-            <h4 className="text-h4/medium uppercase text-primary">{dictionary.Transactions}</h4>
+            <h4 className="text-h4/medium text-primary uppercase">{t('Transactions')}</h4>
 
             <span>{FormatNumber.numberWithCommas(189572)}</span>
           </div>
@@ -280,11 +277,9 @@ const Stats = ({ dictionary }: DefaultViewProps) => {
 
         <div className="flex items-center gap-3 py-4">
           <div>
-            <h4 className="text-h4/medium uppercase text-primary">
-              {dictionary['Average Block Time']}
-            </h4>
+            <h4 className="text-h4/medium text-primary uppercase">{t('Average Block Time')}</h4>
 
-            <span>5 {dictionary.seconds}</span>
+            <span>5 {t('seconds')}</span>
           </div>
         </div>
       </div>

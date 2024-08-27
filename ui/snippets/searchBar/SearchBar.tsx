@@ -27,16 +27,14 @@ import SearchBarInput from './SearchBarInput'
 import SearchBarRecentKeywords from './SearchBarRecentKeywords'
 import SearchBarSuggest from './SearchBarSuggest/SearchBarSuggest'
 import useQuickSearchQuery from './useQuickSearchQuery'
-import { LocaleKeys } from 'service/types/locales'
 
 type Props = {
   isHomepage?: boolean
-  dictionary: LocaleKeys
 }
 
 const SCROLL_CONTAINER_ID = 'search_bar_popover_content'
 
-const SearchBar = ({ isHomepage, dictionary }: Props) => {
+const SearchBar = ({ isHomepage }: Props) => {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const inputRef = React.useRef<HTMLFormElement>(null)
   const menuRef = React.useRef<HTMLDivElement>(null)
@@ -151,7 +149,6 @@ const SearchBar = ({ isHomepage, dictionary }: Props) => {
             isHomepage={isHomepage}
             value={searchTerm}
             isSuggestOpen={isOpen}
-            dictionary={dictionary}
           />
         </PopoverTrigger>
         <Portal>

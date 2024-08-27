@@ -15,10 +15,8 @@ import WalletMenuDesktop from 'ui/snippets/walletMenu/WalletMenuDesktop'
 import { useTranslation } from 'next-i18next'
 const rollupFeature = config.features.rollup
 
-
 const Home = () => {
   const { t } = useTranslation()
-
   const isMobile = useIsMobile()
 
   return (
@@ -42,7 +40,7 @@ const Home = () => {
             color={config.UI.homepage.plate.textColor}
             mb={8}
           >
-            {dictionary['Explore STO Blockchain']}
+            {t('Explore STO Blockchain')}
           </Heading>
           {/* <Flex mb={{ base: 2, lg: 3 }} justifyContent="center" alignItems="center">
             {config.UI.navigation.layout === 'vertical' && (
@@ -55,7 +53,7 @@ const Home = () => {
             )}
           </Flex> */}
           <Box mx="auto" maxW={'680px'}>
-            <SearchBar isHomepage dictionary={dictionary} />
+            <SearchBar isHomepage />
           </Box>
         </Box>
       </Flex>
@@ -66,7 +64,7 @@ const Home = () => {
         mt={3}
         _empty={{ mt: 0 }}
       >
-        <Stats dictionary={dictionary} />
+        <Stats />
         <ChainIndicators />
       </Flex>
       {isMobile && <AdBanner mt={6} mx="auto" display="flex" justifyContent="center" />}

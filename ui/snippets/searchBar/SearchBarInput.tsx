@@ -14,7 +14,7 @@ import type { ChangeEvent, FormEvent, FocusEvent } from 'react'
 import { useScrollDirection } from 'lib/contexts/scrollDirection'
 import useIsMobile from 'lib/hooks/useIsMobile'
 import ClearButton from 'ui/shared/ClearButton'
-import { LocaleKeys } from 'service/types/locales'
+import { useTranslation } from 'next-i18next'
 import { Button } from '@chakra-ui/react'
 
 interface Props {
@@ -27,24 +27,14 @@ interface Props {
   isHomepage?: boolean
   isSuggestOpen?: boolean
   value: string
-  dictionary: LocaleKeys
 }
 
 const SearchBarInput = (
-  {
-    onChange,
-    onSubmit,
-    isHomepage,
-    isSuggestOpen,
-    onFocus,
-    onBlur,
-    onHide,
-    onClear,
-    value,
-    dictionary,
-  }: Props,
+  { onChange, onSubmit, isHomepage, isSuggestOpen, onFocus, onBlur, onHide, onClear, value }: Props,
   ref: React.ForwardedRef<HTMLFormElement>,
 ) => {
+  const { t } = useTranslation()
+
   const innerRef = React.useRef<HTMLFormElement>(null)
   React.useImperativeHandle(ref, () => innerRef.current as HTMLFormElement, [])
   const [isSticky, setIsSticky] = React.useState(false)
@@ -119,9 +109,7 @@ const SearchBarInput = (
               placeholder={
                 isMobile
                   ? 'Search by address / ... '
-                  : dictionary[
-                      'Search by Address/ Token symbol/ Name / Transaction hash / Block number'
-                    ]
+                  : t('Search by Address/ Token symbol/ Name / Transaction hash / Block number')
               }
               onChange={handleChange}
               _focusWithin={{ _placeholder: { color: 'gray.300' } }}
@@ -150,7 +138,7 @@ const SearchBarInput = (
             borderTopRightRadius="4px"
             borderBottomRightRadius="4px"
           >
-            {dictionary.Search}
+            {t('Search')}
           </Button>
         </Flex>
       </chakra.form>
