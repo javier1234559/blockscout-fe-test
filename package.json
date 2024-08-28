@@ -127,7 +127,8 @@
     "use-font-face-observer": "^1.2.1",
     "viem": "2.10.9",
     "wagmi": "2.9.2",
-    "xss": "^1.0.14"
+    "xss": "^1.0.14",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.5",

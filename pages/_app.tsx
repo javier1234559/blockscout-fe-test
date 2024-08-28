@@ -1,16 +1,12 @@
 import type { ChakraProps } from '@chakra-ui/react';
-import { GrowthBookProvider } from '@growthbook/growthbook-react';
-import * as Sentry from '@sentry/react';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import type { AppProps } from 'next/app';
 import React from 'react';
-
-import type { NextPageWithLayout } from 'nextjs/types';
-
+import { GrowthBookProvider } from '@growthbook/growthbook-react'
+import * as Sentry from '@sentry/react'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import config from 'configs/app';
-import useQueryClientConfig from 'lib/api/useQueryClientConfig';
-import { AppContextProvider } from 'lib/contexts/app';
+import useQueryClientConfig from 'lib/api/useQueryClientConfig'
+import { AppContextProvider } from 'lib/contexts/app'
 import { ChakraProvider } from 'lib/contexts/chakra';
 import { MarketplaceContextProvider } from 'lib/contexts/marketplace';
 import { ScrollDirectionProvider } from 'lib/contexts/scrollDirection';
@@ -18,14 +14,17 @@ import { growthBook } from 'lib/growthbook/init';
 import useLoadFeatures from 'lib/growthbook/useLoadFeatures';
 import useNotifyOnNavigation from 'lib/hooks/useNotifyOnNavigation';
 import { SocketProvider } from 'lib/socket/context';
-import AppErrorBoundary from 'ui/shared/AppError/AppErrorBoundary';
-import GoogleAnalytics from 'ui/shared/GoogleAnalytics';
-import Layout from 'ui/shared/layout/Layout';
-import Web3ModalProvider from 'ui/shared/Web3ModalProvider';
-import './global.css';
-
-import 'lib/setLocale';
+import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
+import type { NextPageWithLayout } from 'nextjs/types';
+import AppErrorBoundary from 'ui/shared/AppError/AppErrorBoundary'
+import GoogleAnalytics from 'ui/shared/GoogleAnalytics'
+import Layout from 'ui/shared/layout/Layout'
+import Web3ModalProvider from 'ui/shared/Web3ModalProvider'
+
+import 'lib/setLocale'
+
+import './global.css'
 // import 'focus-visible/dist/focus-visible';
 
 type AppPropsWithLayout = AppProps & {
@@ -45,7 +44,6 @@ const ERROR_SCREEN_STYLES: ChakraProps = {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-
   useLoadFeatures();
   useNotifyOnNavigation();
 
@@ -59,10 +57,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <ChakraProvider cookies={ pageProps.cookies }>
-      <AppErrorBoundary
-        { ...ERROR_SCREEN_STYLES }
-        onError={ handleError }
-      >
+      <AppErrorBoundary { ...ERROR_SCREEN_STYLES } onError={ handleError }>
         <Web3ModalProvider>
           <AppContextProvider pageProps={ pageProps }>
             <QueryClientProvider client={ queryClient }>
@@ -85,4 +80,4 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   );
 }
 
-export default appWithTranslation(MyApp);;
+export default appWithTranslation(MyApp);

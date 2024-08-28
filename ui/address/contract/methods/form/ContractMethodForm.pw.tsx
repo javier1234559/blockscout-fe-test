@@ -7,7 +7,9 @@ import { test, expect } from 'playwright/lib';
 import ContractMethodForm from './ContractMethodForm';
 
 const onSubmit: FormSubmitHandler = () => Promise.resolve({ source: 'wallet_client' as const, data: { hash: '0x0000' as `0x${ string }` } });
-const onReset = () => {};
+const onReset = () => {
+  // Add code here if needed
+};
 
 const data: SmartContractMethod = {
   inputs: [

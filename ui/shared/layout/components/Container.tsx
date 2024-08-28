@@ -1,5 +1,5 @@
-import { Box, chakra } from '@chakra-ui/react';
-import React from 'react';
+import { Box, chakra } from "@chakra-ui/react";
+import React from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -8,8 +8,8 @@ interface Props {
 
 const Container = ({ children, className }: Props) => {
   return (
-    <Box className={ className } minWidth={{ base: '100vw', lg: 'auto' }}>
-      { children }
+    <Box className={className} maxW="container.xl" width="100%" mx="auto">
+      {children}
     </Box>
   );
 };

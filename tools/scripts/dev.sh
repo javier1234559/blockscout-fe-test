@@ -19,7 +19,7 @@ dotenv \
   -e .env.local \
   -e .env.development \
   -e .env \
-  -- bash -c './deploy/scripts/make_envs_script.sh && next dev -p $NEXT_PUBLIC_APP_PORT' |
+  -- bash -c './deploy/scripts/make_envs_script.sh && next dev --turbo -p $NEXT_PUBLIC_APP_PORT' |
 pino-pretty
 
   # -v NEXT_PUBLIC_GIT_TAG=$(git describe --tags --abbrev=0) \

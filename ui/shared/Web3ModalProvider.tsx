@@ -29,7 +29,7 @@ const init = () => {
       featuredWalletIds: [],
       allowUnsupportedChain: true,
     });
-  } catch (error) {}
+  } catch (error) { /* empty */ }
 };
 
 init();

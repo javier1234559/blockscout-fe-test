@@ -12,7 +12,7 @@ test.describe('base view', () => {
     const component = await render(
       <TxsTable
         txs={ [ txMock.base, txMock.withWatchListNames ] }
-        // eslint-disable-next-line react/jsx-no-bind
+        // eslint-disable-next-line react/jsx-no-bind, @typescript-eslint/no-empty-function
         sort={ () => () => {} }
         top={ 0 }
         showBlockInfo
@@ -32,7 +32,7 @@ test.describe('base view', () => {
       const component = await render(
         <TxsTable
           txs={ [ txMock.base, txMock.withWatchListNames ] }
-          // eslint-disable-next-line react/jsx-no-bind
+          // eslint-disable-next-line react/jsx-no-bind, @typescript-eslint/no-empty-function
           sort={ () => () => {} }
           top={ 0 }
           showBlockInfo

@@ -1,4 +1,8 @@
 const colors = {
+  pink: {
+    '500': '#a31f68',
+    '600': '#4a00c4',
+  },
   green: {
     '100': '#C6F6D5',
     '400': '#48BB78',
@@ -60,6 +64,6 @@ const colors = {
   facebook: '#4460A0',
   medium: '#231F20',
   reddit: '#FF4500',
-};
+}
 
-export default colors;
+export default colors

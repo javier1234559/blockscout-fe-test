@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+// @ts-ignore
 const config = require('./build/configs/app').default;
 
 run();
@@ -10,9 +11,9 @@ async function run() {
 To adjust their configuration, please refer to the documentation - https://github.com/blockscout/frontend/blob/main/docs/ENVS.md#app-features
     `);
     Object.entries(config.features)
-      .forEach(([ , feature ]) => {
+      .forEach(([, feature]) => {
         const mark = feature.isEnabled ? 'v' : ' ';
-        console.log(`    [${ mark }] ${ feature.title }`);
+        console.log(`    [${mark}] ${feature.title}`);
       });
 
   } catch (error) {
