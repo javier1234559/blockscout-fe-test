@@ -51,18 +51,18 @@ export const extendTheme = {
     neutral: {
       1: "rgba(249, 249, 249, 1)",
     },
-    green: {
-      default: "#6BC10E14",
-      light: "#00D971",
-    },
-    pink: {
-      DEFAULT: "rgba(255, 44, 168, 1)",
-      opacity: "rgba(137, 42, 69, 0.2)",
-    },
-    blue: {
-      light: "rgba(46, 192, 255, 1)",
-      dark: "rgba(53, 0, 203, 1)",
-    },
+    // green: {
+    //   default: "#6BC10E14",
+    //   light: "#00D971",
+    // },
+    // pink: {
+    //   DEFAULT: "rgba(255, 44, 168, 1)",
+    //   opacity: "rgba(137, 42, 69, 0.2)",
+    // },
+    // blue: {
+    //   light: "rgba(46, 192, 255, 1)",
+    //   dark: "rgba(53, 0, 203, 1)",
+    // },
     "stroke-line": {
       DEFAULT: "rgba(24, 30, 44, 1)",
     },

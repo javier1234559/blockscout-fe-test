@@ -1,6 +1,8 @@
+import { extendTheme as tailwindThemeConfig } from "service/theme/extend-theme";
+
 const zIndices = {
   hide: -1,
-  auto: 'auto',
+  auto: "auto",
   base: 0,
   docked: 10,
   dropdown: 1000,
@@ -14,6 +16,7 @@ const zIndices = {
   tooltip: 1550, // otherwise tooltips will not be visible in modals
   skipLink: 1600,
   toast: 1700,
+  zIndex: tailwindThemeConfig.zIndex,
 };
 
 export default zIndices;
