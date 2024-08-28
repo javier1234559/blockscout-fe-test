@@ -92,7 +92,7 @@ const UI = Object.freeze({
         getEnvValue("NEXT_PUBLIC_HOMEPAGE_PLATE_TEXT_COLOR") || "white",
     },
     showAvgBlockTime:
-      getEnvValue("NEXT_PUBLIC_HOMEPAGE_SHOW_AVG_BLOCK_TIME") === "false"
+      getEnvValue("NEXT_PUBLIC_HOMEPAGE_SHOW_AVG_BLOCK_TIME") === "true"
         ? false
         : true,
   },

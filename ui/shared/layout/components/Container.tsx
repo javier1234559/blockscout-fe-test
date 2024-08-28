@@ -8,13 +8,7 @@ interface Props {
 
 const Container = ({ children, className }: Props) => {
   return (
-    <Box
-      className={className}
-      maxW="container.xl"
-      width="100%"
-      mx="auto"
-      px={{ base: 2, lg: 0 }}
-    >
+    <Box className={className} maxW="container.xl" width="100%" mx="auto">
       {children}
     </Box>
   );

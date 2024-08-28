@@ -9,6 +9,7 @@ import PCHeader from "./pc";
 import { Box, useMediaQuery } from "@chakra-ui/react";
 import { MEDIA_MIN_WIDTH_KEYS } from "service/utils/media-queries";
 import { LocaleEnum } from "service/types/locales";
+import { Container } from "ui/shared/layout/components";
 
 function Header() {
   const pathname = usePathname();
@@ -59,8 +60,11 @@ function Header() {
       transition="all 0.5s"
       bg="linear-gradient(to right, #a72168, #36087d)"
       py={!isInHomePage || isScrolled ? 1 : 2}
+      mx={{ base: 2, lg: 0 }}
     >
-      {isMobile ? <PCHeader /> : <MobileHeader />}
+      <Container flexGrow={1}>
+        {isMobile ? <PCHeader /> : <MobileHeader />}
+      </Container>
     </Box>
   );
 }

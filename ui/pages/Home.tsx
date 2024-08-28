@@ -14,6 +14,7 @@ import SearchBar from "ui/snippets/searchBar/SearchBar";
 import WalletMenuDesktop from "ui/snippets/walletMenu/WalletMenuDesktop";
 import { useTranslation } from "next-i18next";
 const rollupFeature = config.features.rollup;
+import Container from "ui/shared/layout/components/Container";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ const Home = () => {
         alignItems="center"
         data-label="hero plate"
       >
-        <Box flexGrow={1}>
+        <Container flexGrow={1}>
           <Heading
             as="h1"
             fontSize={{ base: "2rem", lg: "3rem" }}
@@ -54,36 +55,38 @@ const Home = () => {
           <Box mx="auto" maxW={"680px"}>
             <SearchBar isHomepage />
           </Box>
-        </Box>
+        </Container>
       </Flex>
-      <Flex
-        flexDir={{ base: "column", lg: "row" }}
-        columnGap={2}
-        rowGap={1}
-        mt={3}
-        _empty={{ mt: 0 }}
-      >
-        <Stats />
-        <ChainIndicators />
-      </Flex>
-      {isMobile && (
-        <AdBanner mt={6} mx="auto" display="flex" justifyContent="center" />
-      )}
-      <Flex
-        mt={8}
-        direction={{ base: "column", lg: "row" }}
-        columnGap={12}
-        rowGap={6}
-      >
-        {rollupFeature.isEnabled && rollupFeature.type === "zkEvm" ? (
-          <LatestZkEvmL2Batches />
-        ) : (
-          <LatestBlocks />
+      <Container flexGrow={1}>
+        <Flex
+          flexDir={{ base: "column", lg: "row" }}
+          columnGap={2}
+          rowGap={1}
+          mt={3}
+          _empty={{ mt: 0 }}
+        >
+          <Stats />
+          <ChainIndicators />
+        </Flex>
+        {isMobile && (
+          <AdBanner mt={6} mx="auto" display="flex" justifyContent="center" />
         )}
-        <Box flexGrow={1}>
-          <Transactions />
-        </Box>
-      </Flex>
+        <Flex
+          mt={8}
+          direction={{ base: "column", lg: "row" }}
+          columnGap={12}
+          rowGap={6}
+        >
+          {rollupFeature.isEnabled && rollupFeature.type === "zkEvm" ? (
+            <LatestZkEvmL2Batches />
+          ) : (
+            <LatestBlocks />
+          )}
+          <Box flexGrow={1}>
+            <Transactions />
+          </Box>
+        </Flex>
+      </Container>
     </>
   );
 };

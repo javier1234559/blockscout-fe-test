@@ -1,4 +1,4 @@
-import config from 'configs/app';
+import config from "configs/app";
 
 // FIXME
 // I was not able to figure out how to send CORS with credentials from localhost
@@ -9,5 +9,5 @@ export default function isNeedProxy() {
     return false;
   }
 
-  return config.app.host === 'localhost' && config.app.host !== config.api.host;
+  return config.app.host === "localhost" && config.app.host !== config.api.host;
 }
