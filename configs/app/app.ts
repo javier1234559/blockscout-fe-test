@@ -1,13 +1,12 @@
-import { getEnvValue, getEnvWithProductionFallback } from "configs/app/utils";
+import { getEnvValue } from "configs/app/utils";
 
-const appPort = getEnvWithProductionFallback("NEXT_PUBLIC_APP_PORT");
-const appSchema = getEnvWithProductionFallback("NEXT_PUBLIC_APP_PROTOCOL");
-const appHost = getEnvWithProductionFallback("NEXT_PUBLIC_APP_HOST");
+const appPort = getEnvValue("NEXT_PUBLIC_APP_PORT");
+const appSchema = getEnvValue("NEXT_PUBLIC_APP_PROTOCOL");
+const appHost = getEnvValue("NEXT_PUBLIC_APP_HOST");
 const baseUrl = [appSchema || "https", "://", appHost, appPort && ":" + appPort]
   .filter(Boolean)
   .join("");
-const isDev =
-  getEnvWithProductionFallback("NEXT_PUBLIC_APP_ENV") === "development";
+const isDev = getEnvValue("NEXT_PUBLIC_APP_ENV") === "development";
 
 const app = Object.freeze({
   isDev,

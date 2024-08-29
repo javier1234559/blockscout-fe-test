@@ -4,12 +4,12 @@ import * as regexp from "lib/regexp";
 export const replaceQuotes = (value: string | undefined) =>
   value?.replaceAll("'", '"');
 
-const isProduction = process.env.NODE_ENV === "production";
+// const isProduction = process.env.NODE_ENV === "production";
 
-export const getEnvWithProductionFallback = (key: string) => {
-  // return getEnvValue(key);
-  return isProduction ? getEnvValue(`${key}_PRODUCTION`) : getEnvValue(key);
-};
+// export const getEnvWithProductionFallback = (key: string) => {
+//   // return getEnvValue(key);
+//   return isProduction ? getEnvValue(`${key}_PRODUCTION`) : getEnvValue(key);
+// };
 
 export const getEnvValue = (envName: string) => {
   // eslint-disable-next-line no-restricted-properties

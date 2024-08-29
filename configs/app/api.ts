@@ -1,10 +1,9 @@
 import stripTrailingSlash from "lib/stripTrailingSlash";
-import { getEnvValue, getEnvWithProductionFallback } from "./utils";
+import { getEnvValue } from "./utils";
 
-const apiHost = getEnvWithProductionFallback("NEXT_PUBLIC_API_HOST");
-const apiSchema =
-  getEnvWithProductionFallback("NEXT_PUBLIC_API_PROTOCOL") || "https";
-const apiPort = getEnvWithProductionFallback("NEXT_PUBLIC_API_PORT"); // Không sử dụng port trong production
+const apiHost = getEnvValue("NEXT_PUBLIC_API_HOST");
+const apiSchema = getEnvValue("NEXT_PUBLIC_API_PROTOCOL") || "https";
+const apiPort = getEnvValue("NEXT_PUBLIC_API_PORT"); // Không sử dụng port trong production
 
 const apiEndpoint = [
   apiSchema || "https",
@@ -15,8 +14,7 @@ const apiEndpoint = [
   .filter(Boolean)
   .join("");
 
-const socketSchema =
-  getEnvWithProductionFallback("NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL") || "wss";
+const socketSchema = getEnvValue("NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL") || "wss";
 const socketEndpoint = [socketSchema, "://", apiHost, apiPort && ":" + apiPort]
   .filter(Boolean)
   .join("");
