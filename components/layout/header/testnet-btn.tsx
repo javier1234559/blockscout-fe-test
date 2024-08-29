@@ -35,7 +35,7 @@ function TestnetBtn() {
               {t("Testnet")}
             </Text>
             <Text
-              fontFamily="heading"
+              fontFamily="autowide"
               fontSize="base"
               fontWeight="normal"
               lineHeight="tight"

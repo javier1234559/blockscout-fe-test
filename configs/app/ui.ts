@@ -85,6 +85,7 @@ const UI = Object.freeze({
         getEnvValue("NEXT_PUBLIC_HOMEPAGE_CHARTS")
       ) || [],
     plate: {
+      fontFamily: getEnvValue("NEXT_PUBLIC_HOMEPAGE_PLATE_FONT_FAMILY"),
       background:
         getEnvValue("NEXT_PUBLIC_HOMEPAGE_PLATE_BACKGROUND") ||
         HOMEPAGE_PLATE_BACKGROUND_DEFAULT,

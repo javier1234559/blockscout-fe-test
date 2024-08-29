@@ -4,7 +4,8 @@ import { getEnvValue } from "./utils";
 const isProduction = process.env.NODE_ENV === "production";
 
 const getEnvWithProductionFallback = (key: string) => {
-  return isProduction ? getEnvValue(`${key}_PRODUCTION`) : getEnvValue(key);
+  return getEnvValue(key);
+  // return isProduction ? getEnvValue(`${key}_PRODUCTION`) : getEnvValue(key);
 };
 
 const apiHost = getEnvWithProductionFallback("NEXT_PUBLIC_API_HOST");

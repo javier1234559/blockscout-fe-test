@@ -1,13 +1,12 @@
 import { theme } from "@chakra-ui/react";
-import { extendTheme as tailwindThemeConfig } from "service/theme/extend-theme";
 
 export const BODY_TYPEFACE = "Inter";
 export const HEADING_TYPEFACE = "Audiowide";
 
 const typography = {
   fonts: {
-    heading: `${HEADING_TYPEFACE}, ${theme.fonts.heading}`,
     body: `${BODY_TYPEFACE}, ${theme.fonts.body}`,
+    autowide: `${HEADING_TYPEFACE}, ${theme.fonts.heading}`,
   },
   // fonts: {
   //   body: tailwindThemeConfig.fontFamily.text,

@@ -21,18 +21,6 @@ import AppErrorBoundary from "ui/shared/AppError/AppErrorBoundary";
 import GoogleAnalytics from "ui/shared/GoogleAnalytics";
 import Layout from "ui/shared/layout/Layout";
 import Web3ModalProvider from "ui/shared/Web3ModalProvider";
-import { Inter, Audiowide } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-text",
-});
-
-const audiowide = Audiowide({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-heading",
-});
 
 import "lib/setLocale";
 
@@ -69,32 +57,30 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <ChakraProvider cookies={pageProps.cookies}>
-      <div className={`${inter.variable} ${audiowide.variable} font-sans`}>
-        <AppErrorBoundary {...ERROR_SCREEN_STYLES} onError={handleError}>
-          <Web3ModalProvider>
-            <AppContextProvider pageProps={pageProps}>
-              <QueryClientProvider client={queryClient}>
-                <GrowthBookProvider growthbook={growthBook}>
-                  <ScrollDirectionProvider>
-                    <SocketProvider
-                      url={`${config.api.socket}${config.api.basePath}/socket/v2`}
-                    >
-                      <MarketplaceContextProvider>
-                        {getLayout(<Component {...pageProps} />)}
-                      </MarketplaceContextProvider>
-                    </SocketProvider>
-                  </ScrollDirectionProvider>
-                </GrowthBookProvider>
-                <ReactQueryDevtools
-                  buttonPosition="bottom-left"
-                  position="left"
-                />
-                <GoogleAnalytics />
-              </QueryClientProvider>
-            </AppContextProvider>
-          </Web3ModalProvider>
-        </AppErrorBoundary>
-      </div>
+      <AppErrorBoundary {...ERROR_SCREEN_STYLES} onError={handleError}>
+        <Web3ModalProvider>
+          <AppContextProvider pageProps={pageProps}>
+            <QueryClientProvider client={queryClient}>
+              <GrowthBookProvider growthbook={growthBook}>
+                <ScrollDirectionProvider>
+                  <SocketProvider
+                    url={`${config.api.socket}${config.api.basePath}/socket/v2`}
+                  >
+                    <MarketplaceContextProvider>
+                      {getLayout(<Component {...pageProps} />)}
+                    </MarketplaceContextProvider>
+                  </SocketProvider>
+                </ScrollDirectionProvider>
+              </GrowthBookProvider>
+              <ReactQueryDevtools
+                buttonPosition="bottom-left"
+                position="left"
+              />
+              <GoogleAnalytics />
+            </QueryClientProvider>
+          </AppContextProvider>
+        </Web3ModalProvider>
+      </AppErrorBoundary>
     </ChakraProvider>
   );
 }
