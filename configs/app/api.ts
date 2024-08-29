@@ -1,12 +1,5 @@
 import stripTrailingSlash from "lib/stripTrailingSlash";
-import { getEnvValue } from "./utils";
-
-const isProduction = process.env.NODE_ENV === "production";
-
-const getEnvWithProductionFallback = (key: string) => {
-  // return getEnvValue(key);
-  return isProduction ? getEnvValue(`${key}_PRODUCTION`) : getEnvValue(key);
-};
+import { getEnvValue, getEnvWithProductionFallback } from "./utils";
 
 const apiHost = getEnvWithProductionFallback("NEXT_PUBLIC_API_HOST");
 const apiSchema =
