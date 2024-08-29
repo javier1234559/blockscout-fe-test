@@ -1,5 +1,3 @@
-import config from "configs/app";
-
 // FIXME
 // I was not able to figure out how to send CORS with credentials from localhost
 // unsuccessfully tried different ways, even custom local dev domain
