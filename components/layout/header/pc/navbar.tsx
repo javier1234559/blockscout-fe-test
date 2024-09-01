@@ -1,37 +1,45 @@
-import AppLink from 'components/common/app-link'
-import MenuItem from 'components/common/menu-item'
-import { useTranslation } from 'next-i18next';
-import { getMenuItems } from '../data'
-import TestnetBtn from '../testnet-btn'
-
+import AppLink from "components/common/app-link";
+import { useTranslation } from "next-i18next";
+import { getMenuItems } from "../data";
+import TestnetBtn from "../testnet-btn";
+import { Flex, Text } from "@chakra-ui/react";
+import ChakraMenuItem from "components/common/menu-item";
 function PCNavbar() {
-  const { t } = useTranslation()
-  const menuItems = getMenuItems(t)
+  const { t } = useTranslation();
+  const menuItems = getMenuItems(t);
 
   return (
     <nav>
-      <ul className="flex items-center gap-8">
+      <Flex as="ul" alignItems="center">
         {menuItems.map((menu) => {
           if (menu.subItems) {
             return (
-              <MenuItem key={menu.title} menuItems={menu.subItems}>
+              <ChakraMenuItem key={menu.title} menuItems={menu.subItems}>
                 {menu.title}
-              </MenuItem>
-            )
+              </ChakraMenuItem>
+            );
           }
 
           return (
-            <li key={menu.title} className="text-sm font-semibold leading-tight text-white">
-              <AppLink href={menu.link}>{menu.title}</AppLink>
+            <li key={menu.title}>
+              <Text
+                as="span"
+                fontSize="sm"
+                fontWeight="semibold"
+                lineHeight="tight"
+                color="white"
+              >
+                <AppLink href={menu.link}>{menu.title}</AppLink>
+              </Text>
             </li>
-          )
+          );
         })}
         <li>
-          <TestnetBtn/>
+          <TestnetBtn />
         </li>
-      </ul>
+      </Flex>
     </nav>
-  )
+  );
 }
 
-export default PCNavbar
+export default PCNavbar;

@@ -43,9 +43,7 @@ const highlightedRoutes = (() => {
 })();
 
 const defaultColorTheme = (() => {
-  const envValue = getEnvValue("NEXT_PUBLIC_COLOR_THEME_DEFAULT") as
-    | ColorThemeId
-    | undefined;
+  const envValue = "dark" as ColorThemeId | undefined;
   return COLOR_THEMES.find((theme) => theme.id === envValue);
 })();
 

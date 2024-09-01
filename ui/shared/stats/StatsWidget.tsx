@@ -5,15 +5,19 @@ import {
   Skeleton,
   useColorModeValue,
   chakra,
+  Heading,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import type { Route } from "nextjs-routes";
 
 import Hint from "ui/shared/Hint";
 import IconSvg, { type IconName } from "ui/shared/IconSvg";
 import TruncatedValue from "ui/shared/TruncatedValue";
+import { useFormattedValue } from "service/hooks/useFormattedValue";
+import { formatCurrencyWithSuffix } from "service/utils/formater";
+import AppIcon from "components/common/app-icon";
 
 type Props = {
   className?: string;
@@ -29,6 +33,7 @@ type Props = {
   period?: "1h" | "24h";
   href?: Route;
   icon?: IconName;
+  iconSrc?: string;
 };
 
 const Container = ({
@@ -52,6 +57,7 @@ const Container = ({
 const StatsWidget = ({
   className,
   icon,
+  iconSrc,
   label,
   value,
   valuePrefix,
@@ -64,9 +70,27 @@ const StatsWidget = ({
   period,
   href,
 }: Props) => {
-  const bgColor = useColorModeValue("gray.50", "whiteAlpha.100");
+  const bgColor = "transparent";
   const skeletonBgColor = useColorModeValue("blackAlpha.50", "whiteAlpha.50");
   const hintColor = useColorModeValue("gray.600", "gray.400");
+  const [formattedValue, setFormattedValue] = useState("$0.00");
+
+  useEffect(() => {
+    setFormattedValue(formatCurrencyWithSuffix(formattedValue));
+  }, [formattedValue]);
+
+  const renderValue = () => {
+    if (label === "Stock Market Cap" && typeof value === "string") {
+      const formattedValue = formatCurrencyWithSuffix(value);
+      return <TruncatedValue isLoading={isLoading} value={formattedValue} />;
+    }
+
+    if (typeof value === "string") {
+      return <TruncatedValue isLoading={isLoading} value={value} />;
+    }
+
+    return value;
+  };
 
   return (
     <Container href={!isLoading ? href : undefined}>
@@ -74,9 +98,8 @@ const StatsWidget = ({
         className={className}
         alignItems="center"
         bgColor={isLoading ? skeletonBgColor : bgColor}
-        p={3}
-        borderRadius="base"
-        justifyContent="space-between"
+        p="0.75rem"
+        // justifyContent="space-between"
         columnGap={2}
         {...(href && !isLoading
           ? {
@@ -88,14 +111,26 @@ const StatsWidget = ({
         {icon && (
           <IconSvg
             name={icon}
-            p={2}
-            boxSize="40px"
+            boxSize="20px"
             isLoading={isLoading}
             borderRadius="base"
             display={{ base: "none", lg: "block" }}
             flexShrink={0}
           />
         )}
+
+        {iconSrc && (
+          <Skeleton isLoaded={!isLoading} display="inline-block">
+            <AppIcon
+              src={iconSrc}
+              width={20}
+              height={20}
+              viewBox="0 0 20 20"
+              className="h-5 w-5 flex-shrink-0 opacity-60"
+            />
+          </Skeleton>
+        )}
+
         <Box w={{ base: "100%", lg: icon ? "calc(100% - 48px)" : "100%" }}>
           <Skeleton
             isLoaded={!isLoading}
@@ -105,7 +140,17 @@ const StatsWidget = ({
             w="fit-content"
             textTransform="uppercase"
           >
-            <h2>{label}</h2>
+            <Heading
+              as="h3"
+              fontFamily="Inter"
+              fontSize="1rem"
+              lineHeight="1.25rem"
+              textTransform="uppercase"
+              fontWeight={700}
+              color="primary.DEFAULT"
+            >
+              {label}
+            </Heading>
           </Skeleton>
           <Skeleton
             isLoaded={!isLoading}
@@ -118,11 +163,7 @@ const StatsWidget = ({
             {valuePrefix && (
               <chakra.span whiteSpace="pre">{valuePrefix}</chakra.span>
             )}
-            {typeof value === "string" ? (
-              <TruncatedValue isLoading={isLoading} value={value} />
-            ) : (
-              value
-            )}
+            {renderValue()}
             {valuePostfix && (
               <chakra.span whiteSpace="pre">{valuePostfix}</chakra.span>
             )}

@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/react";
+import { Box, Flex, Grid, Heading } from "@chakra-ui/react";
 import BigNumber from "bignumber.js";
 import React from "react";
 
@@ -10,7 +10,7 @@ import GasInfoTooltip from "ui/shared/gas/GasInfoTooltip";
 import GasPrice from "ui/shared/gas/GasPrice";
 import IconSvg from "ui/shared/IconSvg";
 import StatsWidget from "ui/shared/stats/StatsWidget";
-import { FormatNumber } from "service/utils/formater";
+import { formatCurrencyWithSuffix } from "service/utils/formater";
 import AppIcon from "components/common/app-icon";
 import { useTranslation } from "next-i18next";
 const hasAvgBlockTime = config.UI.homepage.showAvgBlockTime;
@@ -101,7 +101,7 @@ const Stats = () => {
 
     content = (
       <>
-        {rollupFeature.isEnabled && rollupFeature.type === "zkEvm" && (
+        {/* {rollupFeature.isEnabled && rollupFeature.type === "zkEvm" && (
           <StatsWidget
             icon="txn_batches_slim"
             label="Latest batch"
@@ -118,50 +118,28 @@ const Stats = () => {
             href={{ pathname: "/batches" }}
             isLoading={isLoading}
           />
-        )}
+        )} */}
+
+        <StatsWidget
+          iconSrc="/svg/icons/container.svg#id"
+          label="Stock Price"
+          value={`${formatCurrencyWithSuffix(data.coin_price)}`}
+          href={{ pathname: "/txs" }}
+          isLoading={isLoading}
+        />
+
         {!(
           rollupFeature.isEnabled &&
           (rollupFeature.type === "zkEvm" || rollupFeature.type === "zkSync")
         ) && (
           <StatsWidget
-            icon="block_slim"
-            label="Total blocks"
+            iconSrc="/svg/icons/coin-and-clock.svg#id"
+            label="STOCK Total Blocks"
             value={Number(data.total_blocks).toLocaleString()}
             href={{ pathname: "/blocks" }}
             isLoading={isLoading}
           />
         )}
-        {hasAvgBlockTime && (
-          <StatsWidget
-            icon="clock"
-            label="Average block time"
-            value={`${(data.average_block_time / 1000).toFixed(1)}s`}
-            isLoading={isLoading}
-          />
-        )}
-        <StatsWidget
-          icon="transactions_slim"
-          label="Total transactions"
-          value={Number(data.total_transactions).toLocaleString()}
-          href={{ pathname: "/txs" }}
-          isLoading={isLoading}
-        />
-        {rollupFeature.isEnabled && data.last_output_root_size && (
-          <StatsWidget
-            icon="txn_batches_slim"
-            label="Latest L1 state batch"
-            value={data.last_output_root_size}
-            href={{ pathname: "/batches" }}
-            isLoading={isLoading}
-          />
-        )}
-        <StatsWidget
-          icon="wallet"
-          label="Wallet addresses"
-          value={Number(data.total_addresses).toLocaleString()}
-          isLoading={isLoading}
-          _last={isOdd ? lastItemStyle : undefined}
-        />
         {hasGasTracker && data.gas_prices && (
           <StatsWidget
             icon="gas"
@@ -178,6 +156,37 @@ const Stats = () => {
             _last={isOdd ? lastItemStyle : undefined}
           />
         )}
+        <StatsWidget
+          label="Stock Market Cap"
+          iconSrc="/svg/icons/coin-stack.svg#id"
+          value={data.market_cap}
+          href={{ pathname: "/" }}
+          isLoading={isLoading}
+        />
+        <StatsWidget
+          iconSrc="/svg/icons/left-and-right.svg#id"
+          label="Transactions"
+          value={Number(data.total_transactions).toLocaleString()}
+          href={{ pathname: "/txs" }}
+          isLoading={isLoading}
+        />
+        {rollupFeature.isEnabled && data.last_output_root_size && (
+          <StatsWidget
+            icon="txn_batches_slim"
+            label="Latest L1 state batch"
+            value={data.last_output_root_size}
+            href={{ pathname: "/batches" }}
+            isLoading={isLoading}
+          />
+        )}
+        {/* <StatsWidget
+          icon="wallet"
+          label="Wallet addresses"
+          value={Number(data.total_addresses).toLocaleString()}
+          isLoading={isLoading}
+          _last={isOdd ? lastItemStyle : undefined}
+        /> */}
+
         {data.rootstock_locked_btc && (
           <StatsWidget
             icon="coins/bitcoin"
@@ -187,18 +196,42 @@ const Stats = () => {
             _last={isOdd ? lastItemStyle : undefined}
           />
         )}
+        {hasAvgBlockTime && (
+          <StatsWidget
+            icon="clock"
+            label="Average block time"
+            value={`${(data.average_block_time / 1000).toFixed(1)}s`}
+            isLoading={isLoading}
+          />
+        )}
       </>
     );
   }
   return (
-    <Grid
-      gridTemplateColumns="1fr 1fr"
-      gridGap={{ base: 1, lg: 2 }}
-      flexBasis="50%"
-      flexGrow={1}
-    >
-      {content}
-    </Grid>
+    <Box>
+      <Flex align="center" gap={1} py={4}>
+        <AppIcon
+          src="/svg/icons/contracts.svg#id"
+          width={20}
+          height={20}
+          viewBox="0 0 20 20"
+          className="h-5 w-5 flex-shrink-0 opacity-60"
+        />
+        <Heading as="h2" size="xs" fontSize="1rem">
+          {t("Overview")}
+        </Heading>
+      </Flex>
+      <Grid
+        gridTemplateColumns="1fr 1fr 1fr"
+        gap={{ base: 1, lg: 2 }}
+        borderRadius="sm"
+        border="stroke-line"
+        borderColor="stroke.line"
+        py="1.5rem"
+      >
+        {content}
+      </Grid>
+    </Box>
   );
 };
 

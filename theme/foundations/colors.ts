@@ -66,7 +66,15 @@ const colors = {
   facebook: "#4460A0",
   medium: "#231F20",
   reddit: "#FF4500",
+
+  // Extend the default colors with the tailwind theme colors
   ...tailwindThemeConfig.colors,
+  // primary {
+  //   DEFAULT: "#",
+  // }
+  stroke: {
+    line: "rgba(24, 30, 44, 1)",
+  },
 };
 
 export default colors;

@@ -43,10 +43,18 @@ const Footer = () => {
   ];
 
   return (
-    <Box as="footer" bg="black" w="full" p={5} fontSize="xs" lineHeight="snug">
+    <Box
+      as="footer"
+      bg="black"
+      w="full"
+      p={5}
+      mt={4}
+      fontSize="xs"
+      lineHeight="snug"
+    >
       <Container maxW="container.xl">
         <Flex
-          direction={{ base: "column", md: "row" }}
+          // direction={{ base: "column", md: "row" }}
           align="center"
           justify={{ base: "center", md: "space-between" }}
           gap={5}
