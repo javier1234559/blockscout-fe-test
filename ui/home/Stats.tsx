@@ -122,7 +122,7 @@ const Stats = () => {
 
         <StatsWidget
           iconSrc="/svg/icons/container.svg#id"
-          label="Stock Price"
+          label="Stoc Price"
           value={`${formatCurrencyWithSuffix(data.coin_price)}`}
           href={{ pathname: "/txs" }}
           isLoading={isLoading}
@@ -134,7 +134,7 @@ const Stats = () => {
         ) && (
           <StatsWidget
             iconSrc="/svg/icons/coin-and-clock.svg#id"
-            label="STOCK Total Blocks"
+            label="STOC Total Blocks"
             value={Number(data.total_blocks).toLocaleString()}
             href={{ pathname: "/blocks" }}
             isLoading={isLoading}
@@ -157,7 +157,7 @@ const Stats = () => {
           />
         )}
         <StatsWidget
-          label="Stock Market Cap"
+          label="Stoc Market Cap"
           iconSrc="/svg/icons/coin-stack.svg#id"
           value={data.market_cap}
           href={{ pathname: "/" }}
@@ -222,7 +222,7 @@ const Stats = () => {
         </Heading>
       </Flex>
       <Grid
-        gridTemplateColumns="1fr 1fr 1fr"
+        gridTemplateColumns={{ base: "1fr 1fr", lg: "1fr 1fr 1fr" }}
         gap={{ base: 1, lg: 2 }}
         borderRadius="sm"
         border="stroke-line"

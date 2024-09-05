@@ -98,7 +98,7 @@ const LatestBlocks = () => {
 
   if (data) {
     const dataToShow = data.slice(0, blocksMaxCount);
-    console.log(JSON.stringify(dataToShow, null, 2));
+    // console.log(JSON.stringify(dataToShow, null, 2));
     content = (
       <>
         <VStack spacing={2} mb={3} overflow="hidden" alignItems="stretch">

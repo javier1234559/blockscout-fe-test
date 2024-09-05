@@ -15,7 +15,6 @@ import type { Route } from "nextjs-routes";
 import Hint from "ui/shared/Hint";
 import IconSvg, { type IconName } from "ui/shared/IconSvg";
 import TruncatedValue from "ui/shared/TruncatedValue";
-import { useFormattedValue } from "service/hooks/useFormattedValue";
 import { formatCurrencyWithSuffix } from "service/utils/formater";
 import AppIcon from "components/common/app-icon";
 
@@ -126,7 +125,7 @@ const StatsWidget = ({
               width={20}
               height={20}
               viewBox="0 0 20 20"
-              className="h-5 w-5 flex-shrink-0 opacity-60"
+              className="h-5 w-5 flex-shrink-0 opacity-60 md:block hidden"
             />
           </Skeleton>
         )}

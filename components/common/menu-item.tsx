@@ -87,6 +87,7 @@ function ChakraMenuItem({ children, menuItems }: Props) {
             bg="transparent"
             color="white"
             border="none"
+            fontSize="0.875rem"
             _hover={{ bg: "transparent" }}
             _active={{ bg: "transparent" }}
           >

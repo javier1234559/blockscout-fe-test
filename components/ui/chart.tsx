@@ -225,23 +225,36 @@ const ChartTooltipContent = React.forwardRef<
                         />
                       )
                     )}
-                    <div
-                      className={cn(
-                        "flex flex-1 justify-between leading-none",
-                        nestLabel ? "items-end" : "items-center"
-                      )}
-                    >
-                      <div className="grid gap-1.5">
-                        {nestLabel ? tooltipLabel : null}
-                        <span className="text-slate-500 dark:text-slate-400">
-                          {itemConfig?.label || item.name}
-                        </span>
+                    <div>
+                      <div
+                        className={cn(
+                          "flex flex-1 justify-between leading-none",
+                          nestLabel ? "items-end" : "items-center"
+                        )}
+                      >
+                        <div className="grid gap-1.5">
+                          {nestLabel ? tooltipLabel : null}
+                          <span className="mr-2 text-slate-500 dark:text-slate-400">
+                            {itemConfig?.label || item.name}
+                          </span>
+                        </div>
+                        {item.value && (
+                          <span className="font-mono font-medium tabular-nums text-slate-950 dark:text-slate-50">
+                            {item.value.toLocaleString()}
+                          </span>
+                        )}
                       </div>
-                      {item.value && (
-                        <span className="font-mono font-medium tabular-nums text-slate-950 dark:text-slate-50">
-                          {item.value.toLocaleString()}
-                        </span>
-                      )}
+                      <div className="mt-2">
+                        <span>at </span>
+                        {new Date(item?.payload?.date).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          }
+                        )}
+                      </div>
                     </div>
                   </>
                 )}

@@ -5,7 +5,7 @@ import config from "configs/app";
 import useIsMobile from "lib/hooks/useIsMobile";
 import dynamic from "next/dynamic";
 
-const ChainIndicators = dynamic(
+const sdChainIndicators = dynamic(
   () => import("ui/home/indicators/ChainIndicators"),
   {
     ssr: false,
@@ -22,6 +22,7 @@ import WalletMenuDesktop from "ui/snippets/walletMenu/WalletMenuDesktop";
 import { useTranslation } from "next-i18next";
 const rollupFeature = config.features.rollup;
 import Container from "ui/shared/layout/components/Container";
+import ChainIndicators from "ui/home/indicators/ChainIndicators";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -39,10 +40,11 @@ const Home = () => {
         <Container flexGrow={1}>
           <Heading
             as="h1"
-            fontSize={{ base: "2rem", lg: "4rem" }}
-            lineHeight={{ base: "24px", lg: "5.320625rem" }}
+            fontSize={{ base: "3rem", lg: "4rem" }}
+            lineHeight={{ base: "3.5rem", lg: "5.320625rem" }}
             fontWeight={600}
             textAlign="center"
+            mt={4}
             color={config.UI.homepage.plate.textColor}
             mb={8}
           >
@@ -59,7 +61,7 @@ const Home = () => {
             )}
           </Flex> */}
           <Box
-            mx="auto"
+            mx={{ base: 4, lg: "auto" }}
             mb="3.5rem"
             maxW={"680px"}
             border="1px solid #fff"
