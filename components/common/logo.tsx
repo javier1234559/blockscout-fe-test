@@ -22,7 +22,7 @@ function Logo({ className = "" }: Props) {
         width={50}
         height={50}
         priority
-        className="aspect-[50/50] h-auto max-h-[3.125rem] w-full max-w-[3.125rem] object-contain"
+        className="aspect-square h-auto max-h-[3.125rem] w-full max-w-[3.125rem] object-contain"
       />
       <Heading
         as="h2"

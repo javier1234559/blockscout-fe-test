@@ -1,4 +1,6 @@
-export const getMenuItems = (t: any) => [
+import { TFunction } from "i18next";
+
+export const getMenuItems = (t: TFunction<"translation", undefined>) => [
   { title: t("Home"), link: "/" },
   {
     title: "Blockchain",
