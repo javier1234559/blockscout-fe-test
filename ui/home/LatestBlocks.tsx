@@ -41,7 +41,7 @@ const LatestBlocks = () => {
   ) {
     blocksMaxCount = isMobile ? 4 : 5;
   } else {
-    blocksMaxCount = isMobile ? 2 : 3;
+    blocksMaxCount = isMobile ? 4 : 5;
   }
   const { data, isPlaceholderData, isError } = useApiQuery("homepage_blocks", {
     queryOptions: {
@@ -112,11 +112,11 @@ const LatestBlocks = () => {
             ))}
           </AnimatePresence>
         </VStack>
-        <Flex justifyContent="center">
+        {/* <Flex justifyContent="center">
           <LinkInternal fontSize="sm" href={route({ pathname: "/blocks" })}>
             View all blocks
           </LinkInternal>
-        </Flex>
+        </Flex> */}
       </>
     );
   }
@@ -148,7 +148,7 @@ const LatestBlocks = () => {
           <AppLink href="/blocks">{t("View all")}</AppLink>
         </Button>
       </Flex>
-      {/* {statsQueryResult.data?.network_utilization_percentage !== undefined && (
+      {statsQueryResult.data?.network_utilization_percentage !== undefined && (
         <Skeleton
           isLoaded={!statsQueryResult.isPlaceholderData}
           mt={1}
@@ -157,11 +157,16 @@ const LatestBlocks = () => {
           <Text as="span" fontSize="sm">
             Network utilization:{nbsp}
           </Text>
-          <Text as="span" fontSize="sm" color="blue.400" fontWeight={700}>
+          <Text
+            as="span"
+            fontSize="sm"
+            color="primary.DEFAULT"
+            fontWeight={700}
+          >
             {statsQueryResult.data?.network_utilization_percentage.toFixed(2)}%
           </Text>
         </Skeleton>
-      )} */}
+      )}
       <Box mt={3}>{content}</Box>
     </Box>
   );

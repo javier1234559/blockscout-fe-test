@@ -16,7 +16,7 @@ import LatestTxsItemMobile from "./LatestTxsItemMobile";
 
 const LatestTransactions = () => {
   const isMobile = useIsMobile();
-  const txsCount = isMobile ? 2 : 6;
+  const txsCount = isMobile ? 3 : 5;
   const { data, isPlaceholderData, isError } = useApiQuery("homepage_txs", {
     queryOptions: {
       placeholderData: Array(txsCount).fill(TX),
@@ -33,7 +33,15 @@ const LatestTransactions = () => {
     const txsUrl = route({ pathname: "/txs" });
     return (
       <>
-        {/* <SocketNewItemsNotice borderBottomRadius={ 0 } url={ txsUrl } num={ num } alert={ socketAlert } isLoading={ isPlaceholderData }/> */}
+        <SocketNewItemsNotice
+          borderRadius="sm"
+          bg="transparent"
+          mb={2}
+          url={txsUrl}
+          num={num}
+          alert={socketAlert}
+          isLoading={isPlaceholderData}
+        />
         <Box mb={3} display={{ base: "block", lg: "none" }}>
           {data.slice(0, txsCount).map((tx, index) => (
             <LatestTxsItemMobile
@@ -54,11 +62,11 @@ const LatestTransactions = () => {
             ))}
           </Box>
         </AddressHighlightProvider>
-        <Flex justifyContent="center">
+        {/* <Flex justifyContent="center">
           <LinkInternal fontSize="sm" href={txsUrl}>
             View all transactions
           </LinkInternal>
-        </Flex>
+        </Flex> */}
       </>
     );
   }

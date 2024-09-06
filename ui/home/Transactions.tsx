@@ -61,7 +61,7 @@ const TransactionsHome = () => {
           className="h-5 w-5 text-white"
         />
         <Heading as="h4" size="sm" fontSize="1rem">
-          Latest blocks
+          {t("Latest Transactions")}
         </Heading>
         <Button
           h="8"
@@ -80,7 +80,7 @@ const TransactionsHome = () => {
           _hover={{ opacity: 0.9 }}
           _active={{ bg: "transparent" }}
         >
-          <AppLink href="/txs">{t("Latest Transactions")}</AppLink>
+          <AppLink href="/txs">{t("View All Transactions")}</AppLink>
         </Button>
       </Flex>
       <LatestTxs />

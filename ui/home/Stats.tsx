@@ -122,7 +122,7 @@ const Stats = () => {
 
         <StatsWidget
           iconSrc="/svg/icons/container.svg#id"
-          label="Stoc Price"
+          label={t("STOC Price")}
           value={`${formatCurrencyWithSuffix(data.coin_price)}`}
           href={{ pathname: "/txs" }}
           isLoading={isLoading}
@@ -134,7 +134,7 @@ const Stats = () => {
         ) && (
           <StatsWidget
             iconSrc="/svg/icons/coin-and-clock.svg#id"
-            label="STOC Total Blocks"
+            label={t("STOC Total Blocks")}
             value={Number(data.total_blocks).toLocaleString()}
             href={{ pathname: "/blocks" }}
             isLoading={isLoading}
@@ -143,7 +143,7 @@ const Stats = () => {
         {hasGasTracker && data.gas_prices && (
           <StatsWidget
             icon="gas"
-            label="Gas tracker"
+            label={t("Gas Tracker")}
             value={
               data.gas_prices.average ? (
                 <GasPrice data={data.gas_prices.average} />
@@ -157,7 +157,7 @@ const Stats = () => {
           />
         )}
         <StatsWidget
-          label="Stoc Market Cap"
+          label={t("Stoc Market Cap")}
           iconSrc="/svg/icons/coin-stack.svg#id"
           value={data.market_cap}
           href={{ pathname: "/" }}
@@ -165,7 +165,7 @@ const Stats = () => {
         />
         <StatsWidget
           iconSrc="/svg/icons/left-and-right.svg#id"
-          label="Transactions"
+          label={t("Total Transactions")}
           value={Number(data.total_transactions).toLocaleString()}
           href={{ pathname: "/txs" }}
           isLoading={isLoading}
@@ -199,7 +199,7 @@ const Stats = () => {
         {hasAvgBlockTime && (
           <StatsWidget
             icon="clock"
-            label="Average block time"
+            label={t("Average Block Time")}
             value={`${(data.average_block_time / 1000).toFixed(1)}s`}
             isLoading={isLoading}
           />

@@ -86,7 +86,7 @@ const SearchBarInput = (
     };
   }, [isMobile, handleScroll]);
 
-  const bgColor = useColorModeValue("white", "black");
+  // const bgColor = useColorModeValue("white", "black");
   const transformMobile =
     scrollDirection !== "down" ? "translateY(0)" : "translateY(-100%)";
 

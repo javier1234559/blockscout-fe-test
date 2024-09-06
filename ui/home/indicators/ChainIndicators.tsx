@@ -233,6 +233,17 @@ function TransactionHistory() {
 
   console.log(JSON.stringify(data, null, 2));
 
+  // Calculate the maximum value in the data
+  const maxValue = Math.max(...chartData.map((item) => item.value));
+  const minValue = Math.min(...chartData.map((item) => item.value));
+
+  // Function to calculate the Y-axis domain
+  const calculateYAxisDomain = () => {
+    const yMax = maxValue * 1.1; // Add 10% padding to the top
+    const xMin = minValue * 0.9; // Add 10% padding to the bottom
+    return [xMin, yMax];
+  };
+
   return (
     <Box flex={1}>
       <Flex align="center" gap={1} py={4}>
@@ -257,7 +268,7 @@ function TransactionHistory() {
 
         <ChartContainer
           config={chartConfig}
-          style={{ width: "100%", height: "300px" }}
+          style={{ width: "100%", height: "176px" }}
         >
           <AreaChart
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -269,10 +280,6 @@ function TransactionHistory() {
               dataKey="date"
               tickLine={false}
               axisLine={false}
-              domain={[
-                (dataMin: number) => dataMin * 0.9,
-                (dataMax: number) => dataMax * 1.1,
-              ]}
               tickMargin={8}
               minTickGap={20}
               tickFormatter={(value) =>
@@ -285,7 +292,7 @@ function TransactionHistory() {
             <YAxis
               dataKey="value"
               type="number"
-              domain={["auto", "auto"]}
+              domain={calculateYAxisDomain()}
               tickLine={false}
               axisLine={false}
               tickFormatter={(value) => formatLargeNumber(value)}

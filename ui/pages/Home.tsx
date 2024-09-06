@@ -36,6 +36,7 @@ const Home = () => {
         columnGap={8}
         alignItems="center"
         data-label="hero plate"
+        px={{ base: 4, lg: 0 }}
       >
         <Container flexGrow={1}>
           <Heading
@@ -61,7 +62,7 @@ const Home = () => {
             )}
           </Flex> */}
           <Box
-            mx={{ base: 4, lg: "auto" }}
+            mx="auto"
             mb="3.5rem"
             maxW={"680px"}
             border="1px solid #fff"
