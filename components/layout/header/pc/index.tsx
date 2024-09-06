@@ -1,17 +1,17 @@
-import { memo } from 'react'
-import isEqual from 'react-fast-compare'
+import { memo } from "react";
+import isEqual from "react-fast-compare";
 
-import PCNavbar from './navbar'
-import Logo from 'components/common/logo'
+import PCNavbar from "./navbar";
+import Logo from "components/common/logo";
+import { Flex } from "@chakra-ui/react";
 
 function PCHeader() {
   return (
-    <div className="flex items-center justify-between">
+    <Flex align="center" justify="space-between">
       <Logo />
-
-      <PCNavbar/>
-    </div>
-  )
+      <PCNavbar />
+    </Flex>
+  );
 }
 
-export default memo(PCHeader, isEqual)
+export default memo(PCHeader, isEqual);

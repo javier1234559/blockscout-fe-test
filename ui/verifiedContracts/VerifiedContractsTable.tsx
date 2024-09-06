@@ -1,4 +1,4 @@
-import { Table, Tbody, Tr, Th, Link } from '@chakra-ui/react';
+import { Link, Table, Tbody, Th, Tr } from '@chakra-ui/react';
 import React from 'react';
 
 import type { VerifiedContract } from 'types/api/contracts';
@@ -20,7 +20,9 @@ interface Props {
   isLoading?: boolean;
 }
 
-const VerifiedContractsTable = ({ data, sort, setSorting, isLoading }: Props) => {
+function VerifiedContractsTable({
+  data, sort, setSorting, isLoading,
+}: Props) {
   const sortIconTransform = sort?.includes('asc' as VerifiedContractsSorting['order']) ? 'rotate(-90deg)' : 'rotate(90deg)';
 
   const onSortToggle = React.useCallback((field: VerifiedContractsSortingField) => () => {
@@ -36,13 +38,15 @@ const VerifiedContractsTable = ({ data, sort, setSorting, isLoading }: Props) =>
           <Th width="130px" isNumeric>
             <Link display="flex" alignItems="center" justifyContent="flex-end" onClick={ isLoading ? undefined : onSortToggle('balance') } columnGap={ 1 }>
               { sort?.includes('balance') && <IconSvg name="arrows/east" boxSize={ 4 } transform={ sortIconTransform }/> }
-                Balance { currencyUnits.ether }
+              Balance
+              { ' ' }
+              { currencyUnits.ether }
             </Link>
           </Th>
           <Th width="130px" isNumeric>
             <Link display="flex" alignItems="center" justifyContent="flex-end" onClick={ isLoading ? undefined : onSortToggle('txs_count') } columnGap={ 1 }>
               { sort?.includes('txs_count') && <IconSvg name="arrows/east" boxSize={ 4 } transform={ sortIconTransform }/> }
-                Txs
+              Txs
             </Link>
           </Th>
           <Th width="50%">Compiler / version</Th>
@@ -56,11 +60,12 @@ const VerifiedContractsTable = ({ data, sort, setSorting, isLoading }: Props) =>
           <VerifiedContractsTableItem
             key={ item.address.hash + (isLoading ? index : '') }
             data={ item }
-            isLoading={ isLoading }/>
+            isLoading={ isLoading }
+          />
         )) }
       </Tbody>
     </Table>
   );
-};
+}
 
 export default React.memo(VerifiedContractsTable);
