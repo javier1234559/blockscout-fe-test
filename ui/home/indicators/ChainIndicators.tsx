@@ -227,7 +227,7 @@ function TransactionHistory() {
   console.log(JSON.stringify(data, null, 2));
 
   // Early return if data is not available or doesn't have the expected structure
-  if (!data || !data[0]?.items || data[0].items.length === 0) {
+  if (!data) {
     return <Box>Loading...</Box>;
   }
 
