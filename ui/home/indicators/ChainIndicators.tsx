@@ -160,16 +160,16 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "components/ui/chart";
-import formatDate from "service/utils/date";
 import { useTranslation } from "next-i18next";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, chakra, Flex, Heading } from "@chakra-ui/react";
 import INDICATORS from "ui/home/indicators/utils/indicators";
 import useFetchChartData from "ui/home/indicators/useFetchChartData";
 import useApiQuery from "lib/api/useApiQuery";
 import React from "react";
 import { HOMEPAGE_STATS } from "stubs/stats";
 import ChainIndicatorChartContainer from "ui/home/indicators/ChainIndicatorChartContainer";
-import { BarChart } from "lucide-react";
+import ContentLoader from "ui/shared/ContentLoader";
+import DataFetchAlert from "ui/shared/DataFetchAlert";
 
 const indicators = INDICATORS.filter(({ id }) =>
   config.UI.homepage.charts.includes(id)
@@ -222,27 +222,79 @@ function TransactionHistory() {
   );
   const indicator = indicators.find(({ id }) => id === selectedIndicator);
 
-  const { data } = useFetchChartData(indicator);
+  const { data, isPending, isError } = useFetchChartData(indicator);
 
   console.log(JSON.stringify(data, null, 2));
 
-  // Early return if data is not available or doesn't have the expected structure
-  if (!data) {
-    return <Box>Loading...</Box>;
-  }
+  const content = (() => {
+    if (isPending) {
+      return <ContentLoader mt="auto" fontSize="xs" />;
+    }
 
-  const chartData = data[0].items;
+    if (isError) {
+      return <DataFetchAlert fontSize="xs" p={3} />;
+    }
 
-  // Calculate the maximum value in the data
-  const maxValue = Math.max(...chartData.map((item) => item.value));
-  const minValue = Math.min(...chartData.map((item) => item.value));
+    if (data[0].items.length === 0) {
+      return <chakra.span fontSize="xs">no data</chakra.span>;
+    }
 
-  // Function to calculate the Y-axis domain
-  const calculateYAxisDomain = () => {
-    const yMax = maxValue * 1.1; // Add 10% padding to the top
-    const xMin = minValue * 0.9; // Add 10% padding to the bottom
-    return [xMin, yMax];
-  };
+    const chartData = data[0].items;
+
+    // Calculate the maximum value in the data
+    const maxValue = Math.max(...chartData.map((item) => item.value));
+    const minValue = Math.min(...chartData.map((item) => item.value));
+
+    // Function to calculate the Y-axis domain
+    const calculateYAxisDomain = () => {
+      const yMax = maxValue * 1.1; // Add 10% padding to the top
+      const xMin = minValue * 0.9; // Add 10% padding to the bottom
+      return [xMin, yMax];
+    };
+
+    return (
+      <AreaChart
+        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        accessibilityLayer
+        data={chartData}
+      >
+        <CartesianGrid horizontal vertical={false} stroke="white" />
+        <XAxis
+          dataKey="date"
+          tickLine={false}
+          axisLine={false}
+          tickMargin={8}
+          minTickGap={20}
+          tickFormatter={(value) =>
+            new Date(value).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })
+          }
+        />
+        <YAxis
+          dataKey="value"
+          type="number"
+          domain={calculateYAxisDomain()}
+          tickLine={false}
+          axisLine={false}
+          tickFormatter={(value) => formatLargeNumber(value)}
+        />
+
+        <ChartTooltip
+          cursor={false}
+          content={<ChartTooltipContent hideLabel indicator="dot" />}
+        />
+        <Area
+          type="natural"
+          dataKey="value"
+          stroke={chartConfig.value.color}
+          fill="rgba(255, 44, 168, 0.5)"
+          fillOpacity={0.4}
+        />
+      </AreaChart>
+    );
+  })();
 
   return (
     <Box flex={1}>
@@ -270,46 +322,7 @@ function TransactionHistory() {
           config={chartConfig}
           style={{ width: "100%", height: "176px" }}
         >
-          <AreaChart
-            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-            accessibilityLayer
-            data={chartData}
-          >
-            <CartesianGrid horizontal vertical={false} stroke="white" />
-            <XAxis
-              dataKey="date"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              minTickGap={20}
-              tickFormatter={(value) =>
-                new Date(value).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                })
-              }
-            />
-            <YAxis
-              dataKey="value"
-              type="number"
-              domain={calculateYAxisDomain()}
-              tickLine={false}
-              axisLine={false}
-              tickFormatter={(value) => formatLargeNumber(value)}
-            />
-
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel indicator="dot" />}
-            />
-            <Area
-              type="natural"
-              dataKey="value"
-              stroke={chartConfig.value.color}
-              fill="rgba(255, 44, 168, 0.5)"
-              fillOpacity={0.4}
-            />
-          </AreaChart>
+          {content}
         </ChartContainer>
       </Box>
     </Box>
