@@ -224,14 +224,14 @@ function TransactionHistory() {
 
   const { data } = useFetchChartData(indicator);
 
+  console.log(JSON.stringify(data, null, 2));
+
   // Early return if data is not available or doesn't have the expected structure
   if (!data || !data[0]?.items || data[0].items.length === 0) {
     return <Box>Loading...</Box>;
   }
 
   const chartData = data[0].items;
-
-  console.log(JSON.stringify(data, null, 2));
 
   // Calculate the maximum value in the data
   const maxValue = Math.max(...chartData.map((item) => item.value));
