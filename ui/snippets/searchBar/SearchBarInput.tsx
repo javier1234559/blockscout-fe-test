@@ -100,7 +100,7 @@ const SearchBarInput = (
         onFocus={onFocus}
         w="100%"
         backgroundColor="transparent"
-        borderRadius={{ base: isHomepage ? "base" : "none", lg: "base" }}
+        borderRadius={{ base: isHomepage ? "1px" : "none", lg: "base" }}
         position={{ base: isHomepage ? "static" : "absolute", lg: "relative" }}
         top={{ base: isHomepage ? 0 : 55, lg: 0 }}
         left="0"
@@ -118,7 +118,7 @@ const SearchBarInput = (
         transitionTimingFunction="ease"
       >
         <Flex alignItems="stretch">
-          <InputGroup size={{ base: "sm", lg: isHomepage ? "sm_md" : "sm" }}>
+          <InputGroup size={{ base: "sm", lg: isHomepage ? "sm_md" : "" }}>
             <Input
               placeholder={
                 isMobile
@@ -130,13 +130,18 @@ const SearchBarInput = (
               onChange={handleChange}
               _focusWithin={{ _placeholder: { color: "gray.300" } }}
               color={useColorModeValue("black", "white")}
-              _placeholder={{ color: "#9CA3AF" }}
+              _placeholder={{
+                color: "#9CA3AF",
+                fontSize: { base: "0.75rem", md: "0.875rem" },
+              }}
               style={{
-                borderRadius: "4px 0 0 4px",
+                borderRadius: "1px 0 0 1px",
                 backgroundColor: "transparent",
               }}
-              p={{ base: 2, lg: 3 }}
+              p={{ base: 2, lg: 4 }}
               value={value}
+              h={isHomepage ? "auto" : "3rem"}
+              fontSize="0.875rem"
             />
             {value && (
               <InputRightElement
@@ -147,18 +152,45 @@ const SearchBarInput = (
               </InputRightElement>
             )}
           </InputGroup>
-          <Button
-            type="submit"
-            bgColor="#ff2ca8"
-            _hover={{ bgColor: "#ff2ca8" }}
-            h="auto"
-            borderTopLeftRadius="0"
-            borderBottomLeftRadius="0"
-            borderTopRightRadius="4px"
-            borderBottomRightRadius="4px"
-          >
-            {t("Search")}
-          </Button>
+
+          {!isHomepage ? (
+            <Button
+              type="submit"
+              bgGradient="linear(90deg, #f40993, #3500cb)"
+              _hover={{
+                bgGradient: "linear(90deg, #ff2ca8, #ff2ca8)",
+              }}
+              h="auto"
+              px={8}
+              borderTopLeftRadius="0"
+              borderBottomLeftRadius="0"
+              borderTopRightRadius="1px"
+              borderBottomRightRadius="1px"
+              fontWeight={400}
+            >
+              {t("Search")}
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              bg="primary.DEFAULT"
+              _focus={{
+                bg: "primary.DEFAULT",
+              }}
+              _hover={{
+                bg: "primary.DEFAULT",
+              }}
+              h="auto"
+              px={8}
+              borderTopLeftRadius="0"
+              borderBottomLeftRadius="0"
+              borderTopRightRadius="1px"
+              borderBottomRightRadius="1px"
+              fontWeight={400}
+            >
+              {t("Search")}
+            </Button>
+          )}
         </Flex>
       </chakra.form>
     </>

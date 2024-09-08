@@ -101,7 +101,7 @@ function ChakraMenuItem({ children, menuItems }: Props) {
             }}
           >
             {menuItems.map((item) => (
-              <MenuItem key={item.title} minWidth="7rem">
+              <MenuItem key={item.title} fontSize="0.875rem" minWidth="7rem">
                 <AppLink className="hover:bg-[#1E2A3B] w-full" href={item.link}>
                   {item.title}
                 </AppLink>
