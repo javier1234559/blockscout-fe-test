@@ -18,6 +18,11 @@ const rewrites = require('./nextjs/rewrites');
 const moduleExports = {
   // i18n
   i18n,
+  publicRuntimeConfig: {
+    // Will be available on both server and client
+    staticFolder: '/static',
+    NEXT_PUBLIC_APP_INSTANCE: 'localhost',
+  },
   transpilePackages: [
     'react-syntax-highlighter',
     'swagger-client',

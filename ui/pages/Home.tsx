@@ -3,7 +3,14 @@ import React from "react";
 
 import config from "configs/app";
 import useIsMobile from "lib/hooks/useIsMobile";
-import ChainIndicators from "ui/home/indicators/ChainIndicators";
+import dynamic from "next/dynamic";
+
+const sdChainIndicators = dynamic(
+  () => import("ui/home/indicators/ChainIndicators"),
+  {
+    ssr: false,
+  }
+);
 import LatestBlocks from "ui/home/LatestBlocks";
 import LatestZkEvmL2Batches from "ui/home/LatestZkEvmL2Batches";
 import Stats from "ui/home/Stats";
@@ -15,6 +22,7 @@ import WalletMenuDesktop from "ui/snippets/walletMenu/WalletMenuDesktop";
 import { useTranslation } from "next-i18next";
 const rollupFeature = config.features.rollup;
 import Container from "ui/shared/layout/components/Container";
+import ChainIndicators from "ui/home/indicators/ChainIndicators";
 
 const Home = () => {
   const { t } = useTranslation();
@@ -25,18 +33,19 @@ const Home = () => {
       <Flex
         w="100%"
         background={config.UI.homepage.plate.background}
-        p={{ base: 4, lg: 8 }}
         columnGap={8}
         alignItems="center"
         data-label="hero plate"
+        px={{ base: 4, lg: 0 }}
       >
         <Container flexGrow={1}>
           <Heading
             as="h1"
-            fontSize={{ base: "2rem", lg: "3rem" }}
-            lineHeight={{ base: "24px", lg: "36px" }}
+            fontSize={{ base: "3rem", lg: "4rem" }}
+            lineHeight={{ base: "3.5rem", lg: "5.320625rem" }}
             fontWeight={600}
             textAlign="center"
+            mt={4}
             color={config.UI.homepage.plate.textColor}
             mb={8}
           >
@@ -52,7 +61,14 @@ const Home = () => {
               </Box>
             )}
           </Flex> */}
-          <Box mx="auto" maxW={"680px"}>
+          <Box
+            mx="auto"
+            mb="3.5rem"
+            maxW={"680px"}
+            border="1px solid #fff"
+            borderRadius="sm"
+            overflow="hidden"
+          >
             <SearchBar isHomepage />
           </Box>
         </Container>
@@ -63,6 +79,7 @@ const Home = () => {
           columnGap={2}
           rowGap={1}
           mt={3}
+          px={{ base: 4, lg: 0 }}
           _empty={{ mt: 0 }}
         >
           <Stats />
@@ -74,8 +91,9 @@ const Home = () => {
         <Flex
           mt={8}
           direction={{ base: "column", lg: "row" }}
-          columnGap={12}
-          rowGap={6}
+          columnGap={4}
+          // rowGap={4}
+          px={{ base: 4, lg: 0 }}
         >
           {rollupFeature.isEnabled && rollupFeature.type === "zkEvm" ? (
             <LatestZkEvmL2Batches />

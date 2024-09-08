@@ -3,10 +3,9 @@ import React from "react";
 import type { Props } from "./types";
 
 import AppErrorBoundary from "ui/shared/AppError/AppErrorBoundary";
-import HeaderAlert from "ui/snippets/header/HeaderAlert";
-import HeaderMobile from "ui/snippets/header/HeaderMobile";
-import * as Layout from "./components";
+// import * as Layout from "./components";
 import Header from "components/layout/header";
+import Footer from "components/layout/footer";
 
 const LayoutHome = ({ children }: Props) => {
   return (
@@ -15,7 +14,8 @@ const LayoutHome = ({ children }: Props) => {
       {/* <HeaderMobile hideSearchBar /> */}
       {/* <HeaderAlert /> */}
       <AppErrorBoundary>{children}</AppErrorBoundary>
-      <Layout.Footer />
+      {/* <Layout.Footer /> */}
+      <Footer />
     </>
   );
 };

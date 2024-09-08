@@ -25,6 +25,7 @@ function Header() {
     pathname
   );
 
+  // FIXME: https://ahooks.js.org/
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -47,9 +48,6 @@ function Header() {
     return (
       <div className="h-[4.125rem] bg-gradient-to-r from-[#a72168] to-[#36087d]" />
     );
-
-  console.log("isInHomePage", isMobile);
-
   return (
     <Box
       as="header"
@@ -60,7 +58,7 @@ function Header() {
       transition="all 0.5s"
       bg="linear-gradient(to right, #a72168, #36087d)"
       py={!isInHomePage || isScrolled ? 1 : 2}
-      mx={{ base: 2, lg: 0 }}
+      px={{ base: 2, lg: 0 }}
     >
       <Container flexGrow={1}>
         {isMobile ? <PCHeader /> : <MobileHeader />}

@@ -43,9 +43,7 @@ const highlightedRoutes = (() => {
 })();
 
 const defaultColorTheme = (() => {
-  const envValue = getEnvValue("NEXT_PUBLIC_COLOR_THEME_DEFAULT") as
-    | ColorThemeId
-    | undefined;
+  const envValue = "dark" as ColorThemeId | undefined;
   return COLOR_THEMES.find((theme) => theme.id === envValue);
 })();
 
@@ -85,6 +83,7 @@ const UI = Object.freeze({
         getEnvValue("NEXT_PUBLIC_HOMEPAGE_CHARTS")
       ) || [],
     plate: {
+      fontFamily: getEnvValue("NEXT_PUBLIC_HOMEPAGE_PLATE_FONT_FAMILY"),
       background:
         getEnvValue("NEXT_PUBLIC_HOMEPAGE_PLATE_BACKGROUND") ||
         HOMEPAGE_PLATE_BACKGROUND_DEFAULT,
