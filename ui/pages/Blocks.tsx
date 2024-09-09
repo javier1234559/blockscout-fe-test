@@ -8,7 +8,6 @@ import getQueryParamString from "lib/router/getQueryParamString";
 import { BLOCK } from "stubs/block";
 import { generateListStub } from "stubs/utils";
 import BlocksContent from "ui/blocks/BlocksContent";
-import BlocksTabSlot from "ui/blocks/BlocksTabSlot";
 import PageTitle from "ui/shared/Page/PageTitle";
 import useQueryWithPages from "ui/shared/pagination/useQueryWithPages";
 import RoutedTabs from "ui/shared/Tabs/RoutedTabs";
@@ -16,7 +15,6 @@ import { Container } from "ui/shared/layout/components";
 import { Box } from "@chakra-ui/react";
 import SearchBar from "ui/snippets/searchBar/SearchBar";
 import Pagination from "ui/shared/pagination/Pagination";
-import { base } from "airtable";
 
 const TAB_LIST_PROPS = {
   marginBottom: 0,
@@ -98,6 +96,7 @@ const BlocksPageContent = () => {
     },
   ];
 
+  console.log(JSON.stringify(pagination, null, 2));
   return (
     <>
       <Container mt="16">

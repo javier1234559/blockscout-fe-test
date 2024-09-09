@@ -4,6 +4,8 @@ import React from "react";
 import type { PaginationParams } from "./types";
 
 import IconSvg from "ui/shared/IconSvg";
+import { useTranslation } from "next-i18next";
+import { color } from "d3";
 
 interface Props extends PaginationParams {
   className?: string;
@@ -21,12 +23,38 @@ const Pagination = ({
   isLoading,
   isVisible,
 }: Props) => {
+  const { t } = useTranslation();
+
   if (!isVisible) {
     return null;
   }
-
   const showSkeleton = page === 1 && !hasPages && isLoading;
 
+  const commonButtonStyles = {
+    variant: "outline",
+    border: "1px solid",
+    color: "primary.DEFAULT",
+    borderColor: "gray.700",
+    borderRadius: "sm",
+    _focus: {
+      borderColor: "primary.DEFAULT",
+      boxShadow: "none",
+      outline: "none",
+      border: "1px solid",
+    },
+    _hover: {
+      borderColor: "primary.DEFAULT",
+      boxShadow: "none",
+      outline: "none",
+      color: "primary.DEFAULT",
+      border: "1px solid",
+    },
+    _disabled: {
+      borderColor: "gray.400",
+      opacity: "0.2",
+      color: "white",
+    },
+  };
   return (
     <Flex className={className} fontSize="sm" alignItems="center">
       <Skeleton
@@ -36,14 +64,15 @@ const Pagination = ({
         borderRadius="sm"
       >
         <Button
-          variant="outline"
-          borderRadius="sm"
+          {...commonButtonStyles}
+          color="primary.DEFAULT"
           onClick={resetPage}
           isDisabled={page === 1 || isLoading}
         >
-          First
+          {t("First")}
         </Button>
       </Skeleton>
+
       <Skeleton
         isLoaded={!showSkeleton}
         display="inline-block"
@@ -51,33 +80,39 @@ const Pagination = ({
         borderRadius="sm"
       >
         <IconButton
-          variant="outline"
+          {...commonButtonStyles}
           onClick={onPrevPageClick}
-          borderRadius="sm"
           aria-label="Prev page"
           w="36px"
           icon={<IconSvg name="arrows/east-mini" w={5} h={5} />}
           isDisabled={!canGoBackwards || isLoading}
         />
       </Skeleton>
+
       <Skeleton
         isLoaded={!showSkeleton}
         display="inline-block"
         borderRadius="sm"
       >
         <Button
-          variant="outline"
-          borderRadius="sm"
+          {...commonButtonStyles}
+          bg="transparent"
           data-selected={true}
-          borderWidth="1px"
           fontWeight={400}
-          h={8}
           minW="36px"
           cursor="unset"
+          sx={{
+            '&[data-selected="true"]': {
+              bg: "transparent !important",
+              color: "primary.DEFAULT",
+              borderColor: "gray.700",
+            },
+          }}
         >
           {page}
         </Button>
       </Skeleton>
+
       <Skeleton
         isLoaded={!showSkeleton}
         display="inline-block"
@@ -85,30 +120,14 @@ const Pagination = ({
         borderRadius="sm"
       >
         <IconButton
-          variant="outline"
-          border="1px solid"
-          borderColor="primary.DEFAULT"
+          {...commonButtonStyles}
           onClick={onNextPageClick}
-          borderRadius="sm"
-          _focus={{
-            borderColor: "primary.DEFAULT",
-            boxShadow: "none",
-            outline: "none",
-            border: "1px solid",
-          }}
-          _hover={{
-            borderColor: "primary.DEFAULT",
-            boxShadow: "none",
-            outline: "none",
-            color: "primary.DEFAULT",
-            border: "1px solid",
-          }}
           aria-label="Next page"
           w="36px"
           icon={
             <IconSvg
               name="arrows/east-mini"
-              className="text-primary"
+              color="primary.500"
               w={5}
               h={5}
               transform="rotate(180deg)"
@@ -117,10 +136,6 @@ const Pagination = ({
           isDisabled={!hasNextPage || isLoading}
         />
       </Skeleton>
-      {/* not implemented yet */}
-      {/* <Flex alignItems="center" width="132px" ml={ 16 } display={{ sm: 'none', lg: 'flex' }}>
-            Go to <Input w="84px" size="xs" ml={ 2 }/>
-      </Flex> */}
     </Flex>
   );
 };

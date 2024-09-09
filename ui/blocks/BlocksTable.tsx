@@ -49,8 +49,6 @@ const BlocksTable = ({
       ? FEES_COL_WEIGHT
       : 0);
 
-  console.log(JSON.stringify(data, null, 2));
-
   return (
     <AddressHighlightProvider>
       <Table

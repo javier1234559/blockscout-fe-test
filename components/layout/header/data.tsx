@@ -7,8 +7,8 @@ export const getMenuItems = (t: TFunction<"translation", undefined>) => [
     link: undefined,
     subItems: [
       { title: "Blocks", link: "/blocks" },
-      { title: "Uncles", link: "/uncles" },
-      { title: "Reorgs", link: "/reorgs" },
+      { title: "Uncles", link: "/blocks?tab=uncles" },
+      { title: "Reorgs", link: "/blocks?tab=reorgs" },
       { title: "Transactions", link: "/transaction" },
       { title: "Transactions Pending", link: "/transaction/pending" },
       { title: "Verified Contract", link: "/verified-contracts" },

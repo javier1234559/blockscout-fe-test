@@ -5,19 +5,13 @@ import React from "react";
 import type { SocketMessage } from "lib/socket/types";
 import type { BlockType, BlocksResponse } from "types/api/block";
 
-import { route } from "nextjs-routes";
-
 import { getResourceKey } from "lib/api/useApiQuery";
 import useIsMobile from "lib/hooks/useIsMobile";
 import useSocketChannel from "lib/socket/useSocketChannel";
 import useSocketMessage from "lib/socket/useSocketMessage";
 import BlocksList from "ui/blocks/BlocksList";
 import BlocksTable from "ui/blocks/BlocksTable";
-import ActionBar from "ui/shared/ActionBar";
 import DataListDisplay from "ui/shared/DataListDisplay";
-import IconSvg from "ui/shared/IconSvg";
-import LinkInternal from "ui/shared/links/LinkInternal";
-import Pagination from "ui/shared/pagination/Pagination";
 import type { QueryWithPagesResult } from "ui/shared/pagination/useQueryWithPages";
 import * as SocketNewItemsNotice from "ui/shared/SocketNewItemsNotice";
 import { HEADER_HEIGHT } from "components/layout/header";
@@ -34,7 +28,6 @@ interface Props {
 
 const BlocksContent = ({ type, query, enableSocket = true, top }: Props) => {
   const queryClient = useQueryClient();
-  const isMobile = useIsMobile();
   const [socketAlert, setSocketAlert] = React.useState("");
 
   const [newItemsCount, setNewItemsCount] = React.useState(0);
