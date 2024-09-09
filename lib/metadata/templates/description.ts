@@ -73,8 +73,6 @@ const TEMPLATE_MAP: Record<Route["pathname"], string> = {
   "/api/sprite": DEFAULT_TEMPLATE,
   "/auth/auth0": DEFAULT_TEMPLATE,
   "/auth/unverified-email": DEFAULT_TEMPLATE,
-  "/uncles": DEFAULT_TEMPLATE,
-  "/reorgs": DEFAULT_TEMPLATE,
 };
 
 export function make(pathname: Route["pathname"]) {

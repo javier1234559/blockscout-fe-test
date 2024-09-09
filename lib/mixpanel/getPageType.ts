@@ -61,8 +61,6 @@ export const PAGE_TYPE_DICT: Record<Route["pathname"], string> = {
   "/api/sprite": "Node API: SVG sprite content",
   "/auth/auth0": "Auth",
   "/auth/unverified-email": "Unverified email",
-  "/uncles": "Uncles",
-  "/reorgs": "Reorgs",
 };
 
 export default function getPageType(pathname: Route["pathname"]) {

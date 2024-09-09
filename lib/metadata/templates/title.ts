@@ -66,8 +66,6 @@ const TEMPLATE_MAP: Record<Route["pathname"], string> = {
   "/api/sprite": "%network_name% node API SVG sprite content",
   "/auth/auth0": "%network_name% authentication",
   "/auth/unverified-email": "%network_name% unverified email",
-  "/uncles": "%network_name% uncles",
-  "/reorgs": '%network_name% "reorgs"',
 };
 
 const TEMPLATE_MAP_ENHANCED: Partial<Record<Route["pathname"], string>> = {
