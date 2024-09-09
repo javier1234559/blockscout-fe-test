@@ -63,6 +63,8 @@ const OG_TYPE_DICT: Record<Route["pathname"], OGPageType> = {
   "/api/sprite": "Regular page",
   "/auth/auth0": "Regular page",
   "/auth/unverified-email": "Regular page",
+  "/uncles": "Homepage",
+  "/reorgs": "Homepage",
 };
 
 export default function getPageOgType(pathname: Route["pathname"]) {
