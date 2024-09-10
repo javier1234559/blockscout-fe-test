@@ -48,7 +48,7 @@ const DataListDisplay = (props: Props) => {
   }
 
   return (
-    <Container p={0}>
+    <Container p={{ base: 4, lg: 0 }}>
       <Box className={props.className}>
         {props.actionBar}
         {props.content}
