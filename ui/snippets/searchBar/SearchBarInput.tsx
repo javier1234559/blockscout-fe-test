@@ -98,6 +98,7 @@ const SearchBarInput = (
         onSubmit={onSubmit}
         onBlur={onBlur}
         onFocus={onFocus}
+        mt={{ base: 2, lg: 0 }}
         w="100%"
         backgroundColor="transparent"
         borderRadius={{ base: isHomepage ? "1px" : "none", lg: "base" }}

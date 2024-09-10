@@ -14,6 +14,7 @@ import useIsMobile from "lib/hooks/useIsMobile";
 import TextAd from "ui/shared/ad/TextAd";
 import IconSvg from "ui/shared/IconSvg";
 import LinkInternal from "ui/shared/links/LinkInternal";
+import { Container } from "ui/shared/layout/components";
 
 type BackLinkProp =
   | { label: string; url: string }
@@ -131,74 +132,78 @@ const PageTitle = ({
   }, [updatedTruncateState]);
 
   return (
-    <Flex className={className} flexDir="column" rowGap={3} mb={6} px={4}>
-      <Flex
-        flexDir="row"
-        flexWrap="wrap"
-        rowGap={3}
-        columnGap={3}
-        alignItems="center"
-      >
+    <Container mt="6">
+      <Flex className={className} flexDir="column" rowGap={3} mb={6}>
         <Flex
-          h={{ base: "auto", lg: isLoading ? 10 : "auto" }}
-          maxW="100%"
+          pt={{ base: 8, md: 4, lg: 2 }}
+          flexDir="row"
+          flexWrap="wrap"
+          rowGap={3}
+          columnGap={3}
           alignItems="center"
         >
-          {backLink && <BackLink {...backLink} isLoading={isLoading} />}
-          {beforeTitle}
-          <Skeleton isLoaded={!isLoading} overflow="hidden">
-            <Tooltip
-              label={title}
-              isOpen={tooltip.isOpen}
-              onClose={tooltip.onClose}
-              maxW={{ base: "calc(100vw - 32px)", lg: "500px" }}
-              closeOnScroll={isMobile ? true : false}
-              isDisabled={!isTextTruncated}
-            >
-              <Heading
-                ref={headingRef}
-                as="h1"
-                size="lg"
-                whiteSpace="normal"
-                wordBreak="break-all"
-                style={{
-                  WebkitLineClamp: TEXT_MAX_LINES,
-                  WebkitBoxOrient: "vertical",
-                  display: "-webkit-box",
-                }}
-                overflow="hidden"
-                textOverflow="ellipsis"
-                onMouseEnter={tooltip.onOpen}
-                onMouseLeave={tooltip.onClose}
-                onClick={isMobile ? tooltip.onToggle : undefined}
+          <Flex
+            h={{ base: "auto", lg: isLoading ? 10 : "auto" }}
+            maxW="100%"
+            alignItems="center"
+          >
+            {backLink && <BackLink {...backLink} isLoading={isLoading} />}
+            {beforeTitle}
+            <Skeleton isLoaded={!isLoading} overflow="hidden">
+              <Tooltip
+                label={title}
+                isOpen={tooltip.isOpen}
+                onClose={tooltip.onClose}
+                maxW={{ base: "calc(100vw - 32px)", lg: "500px" }}
+                closeOnScroll={isMobile ? true : false}
+                isDisabled={!isTextTruncated}
               >
-                <span ref={textRef}>{title}</span>
-              </Heading>
-            </Tooltip>
-          </Skeleton>
-          {afterTitle}
+                <Heading
+                  ref={headingRef}
+                  as="h1"
+                  fontSize="2.25rem"
+                  mx={{ base: 2, lg: "auto" }}
+                  whiteSpace="normal"
+                  wordBreak="break-all"
+                  style={{
+                    WebkitLineClamp: TEXT_MAX_LINES,
+                    WebkitBoxOrient: "vertical",
+                    display: "-webkit-box",
+                  }}
+                  overflow="hidden"
+                  textOverflow="ellipsis"
+                  onMouseEnter={tooltip.onOpen}
+                  onMouseLeave={tooltip.onClose}
+                  onClick={isMobile ? tooltip.onToggle : undefined}
+                >
+                  <span ref={textRef}>{title}</span>
+                </Heading>
+              </Tooltip>
+            </Skeleton>
+            {afterTitle}
+          </Flex>
+          {contentAfter}
+          {withTextAd && (
+            <TextAd
+              order={{ base: -1, lg: 100 }}
+              mb={{ base: 6, lg: 0 }}
+              ml="auto"
+              w={{ base: "100%", lg: "auto" }}
+            />
+          )}
         </Flex>
-        {contentAfter}
-        {withTextAd && (
-          <TextAd
-            order={{ base: -1, lg: 100 }}
-            mb={{ base: 6, lg: 0 }}
-            ml="auto"
-            w={{ base: "100%", lg: "auto" }}
-          />
+        {secondRow && (
+          <Flex
+            alignItems="center"
+            minH={10}
+            overflow="hidden"
+            _empty={{ display: "none" }}
+          >
+            {secondRow}
+          </Flex>
         )}
       </Flex>
-      {secondRow && (
-        <Flex
-          alignItems="center"
-          minH={10}
-          overflow="hidden"
-          _empty={{ display: "none" }}
-        >
-          {secondRow}
-        </Flex>
-      )}
-    </Flex>
+    </Container>
   );
 };
 

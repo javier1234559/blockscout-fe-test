@@ -4,7 +4,7 @@ import Image from "next/image";
 import RouteNames from "service/constants/routes";
 import AppLink from "components/common/app-link";
 import AppIcon from "components/common/app-icon";
-import { Box, Container, Flex, HStack, Link, VStack } from "@chakra-ui/react";
+import { Box, Container, Flex, HStack, Link } from "@chakra-ui/react";
 
 const Footer = () => {
   const { t } = useTranslation();

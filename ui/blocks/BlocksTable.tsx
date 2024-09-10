@@ -53,7 +53,7 @@ const BlocksTable = ({
     <AddressHighlightProvider>
       <Table
         variant="simple"
-        minWidth="1040px"
+        minWidth="container.md"
         // size="md"
         fontWeight={500}
         border="1px solid #181E2C"
