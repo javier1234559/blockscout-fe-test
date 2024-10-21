@@ -1,13 +1,13 @@
-import { Box } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Container } from "@chakra-ui/react";
+import React from "react";
 
-import config from 'configs/app';
-import PageTitle from 'ui/shared/Page/PageTitle';
+import config from "configs/app";
+import PageTitle from "ui/shared/Page/PageTitle";
 
-import ChartsWidgetsList from '../stats/ChartsWidgetsList';
-import NumberWidgetsList from '../stats/NumberWidgetsList';
-import StatsFilters from '../stats/StatsFilters';
-import useStats from '../stats/useStats';
+import ChartsWidgetsList from "../stats/ChartsWidgetsList";
+import NumberWidgetsList from "../stats/NumberWidgetsList";
+import StatsFilters from "../stats/StatsFilters";
+import useStats from "../stats/useStats";
 
 const Stats = () => {
   const {
@@ -26,35 +26,41 @@ const Stats = () => {
 
   return (
     <>
-      <PageTitle
-        title={ config.meta.seo.enhancedDataEnabled ? `${ config.chain.name } statistic & data` : `${ config.chain.name } stats` }
-      />
-
-      <Box mb={{ base: 6, sm: 8 }}>
-        <NumberWidgetsList/>
-      </Box>
-
-      <Box mb={{ base: 6, sm: 8 }}>
-        <StatsFilters
-          isLoading={ isPlaceholderData }
-          initialFilterValue={ initialFilterQuery }
-          sections={ sections }
-          currentSection={ currentSection }
-          onSectionChange={ handleSectionChange }
-          interval={ interval }
-          onIntervalChange={ handleIntervalChange }
-          onFilterInputChange={ handleFilterChange }
+      <Container maxW="container.xl">
+        <PageTitle
+          title={
+            config.meta.seo.enhancedDataEnabled
+              ? `${config.chain.name} statistic & data`
+              : `${config.chain.name} stats`
+          }
         />
-      </Box>
 
-      <ChartsWidgetsList
-        filterQuery={ filterQuery }
-        initialFilterQuery={ initialFilterQuery }
-        isError={ isError }
-        isPlaceholderData={ isPlaceholderData }
-        charts={ displayedCharts }
-        interval={ interval }
-      />
+        <Box mb={{ base: 6, sm: 8 }}>
+          <NumberWidgetsList />
+        </Box>
+
+        <Box mb={{ base: 6, sm: 8 }}>
+          <StatsFilters
+            isLoading={isPlaceholderData}
+            initialFilterValue={initialFilterQuery}
+            sections={sections}
+            currentSection={currentSection}
+            onSectionChange={handleSectionChange}
+            interval={interval}
+            onIntervalChange={handleIntervalChange}
+            onFilterInputChange={handleFilterChange}
+          />
+        </Box>
+
+        <ChartsWidgetsList
+          filterQuery={filterQuery}
+          initialFilterQuery={initialFilterQuery}
+          isError={isError}
+          isPlaceholderData={isPlaceholderData}
+          charts={displayedCharts}
+          interval={interval}
+        />
+      </Container>
     </>
   );
 };

@@ -24,7 +24,7 @@ function PCNavbar() {
             <li key={menu.title}>
               <Text
                 as="span"
-                fontSize="sm"
+                fontSize="0.875rem"
                 fontWeight="semibold"
                 lineHeight="tight"
                 color="white"

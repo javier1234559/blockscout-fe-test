@@ -15,7 +15,7 @@ const app = Object.freeze({
   port: appPort,
   baseUrl,
   // useProxy: getEnvValue("NEXT_PUBLIC_USE_NEXT_JS_PROXY") === "true",
-  useProxy: false,
+  useProxy: true,
 });
 
 export default app;
