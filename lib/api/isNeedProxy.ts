@@ -6,6 +6,6 @@ export default function isNeedProxy() {
   // if (config.app.useProxy) {
   //   return true;
   // }
-  return false;
+  return true;
   // return config.app.host === "localhost" && config.app.host !== config.api.host;
 }
