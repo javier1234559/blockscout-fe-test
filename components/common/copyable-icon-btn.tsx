@@ -1,30 +1,29 @@
-'use client'
+"use client";
 
-import { memo, MouseEvent, useCallback } from 'react'
-import isEqual from 'react-fast-compare'
-import { Button, useToast, useClipboard } from '@chakra-ui/react'
-import { useTranslation } from 'next-i18next'
+import { memo, MouseEvent, useCallback } from "react";
+import { Button, useToast, useClipboard } from "@chakra-ui/react";
+import { useTranslation } from "next-i18next";
 
-import AppIcon from './app-icon'
+import AppIcon from "./app-icon";
 
 function CopyableIconBtn({ value }: { value: string }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const toast = useToast()
-  const { onCopy } = useClipboard(value)
+  const toast = useToast();
+  const { onCopy } = useClipboard(value);
 
   const handleSelectTier = useCallback(
     (event: MouseEvent<HTMLButtonElement>) => {
-      onCopy()
+      onCopy();
       toast({
-        title: t('Copy Succeeded'),
-        status: 'success',
+        title: t("Copy Succeeded"),
+        status: "success",
         duration: 2000,
         isClosable: true,
-      })
+      });
     },
-    [onCopy, toast],
-  )
+    [onCopy, toast]
+  );
 
   return (
     <Button
@@ -40,7 +39,7 @@ function CopyableIconBtn({ value }: { value: string }) {
         className="max-h-[1em] max-w-[1em]"
       />
     </Button>
-  )
+  );
 }
 
-export default memo(CopyableIconBtn, isEqual)
+export default memo(CopyableIconBtn);

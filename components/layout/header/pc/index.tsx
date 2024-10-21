@@ -1,5 +1,4 @@
 import { memo } from "react";
-import isEqual from "react-fast-compare";
 
 import PCNavbar from "./navbar";
 import Logo from "components/common/logo";
@@ -14,4 +13,4 @@ function PCHeader() {
   );
 }
 
-export default memo(PCHeader, isEqual);
+export default memo(PCHeader);
