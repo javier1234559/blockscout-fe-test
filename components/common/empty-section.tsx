@@ -1,9 +1,8 @@
-import { memo } from 'react'
-import isEqual from 'react-fast-compare'
-import Image from 'next/image'
+import { memo } from "react";
+import Image from "next/image";
 
 interface Props {
-  text: string
+  text: string;
 }
 
 function EmptySection({ text }: Props) {
@@ -17,9 +16,11 @@ function EmptySection({ text }: Props) {
         alt="empty"
       />
 
-      <div className="text-sm font-normal leading-tight text-gray-400">{text}</div>
+      <div className="text-sm font-normal leading-tight text-gray-400">
+        {text}
+      </div>
     </div>
-  )
+  );
 }
 
-export default memo(EmptySection, isEqual)
+export default memo(EmptySection);

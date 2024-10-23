@@ -71,6 +71,26 @@ function TransactionHistory() {
   const { data, isPending, isError } = useFetchChartDataCustom(indicator);
   console.log(JSON.stringify(data, null, 2));
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://eth.blockscout.com/api/v2/stats/charts/transactions"
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       const data = await response.json();
+  //       console.log("response ", response);
+  //       console.log("data ", data);
+  //     } catch (error) {
+  //       console.error("Fetch error: ", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   const content = (() => {
     if (isPending) {
       return <ContentLoader mt="auto" fontSize="xs" />;

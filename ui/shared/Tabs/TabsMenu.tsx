@@ -66,7 +66,7 @@ const TabsMenu = ({
           isActive={isOpen || isActive}
           ref={buttonRef}
           size={size}
-          {...styles}
+          {...(styles as ButtonProps)}
         >
           {menuButton.title}
         </Button>

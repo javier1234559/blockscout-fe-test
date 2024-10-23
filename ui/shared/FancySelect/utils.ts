@@ -1,20 +1,20 @@
-import type { ColorMode } from '@chakra-ui/react';
-import type { Size, ChakraStylesConfig } from 'chakra-react-select';
+import type { ColorMode } from "@chakra-ui/react";
+import type { Size, ChakraStylesConfig } from "chakra-react-select";
 
-import type { Option } from './types';
+import type { Option } from "./types";
 
-import theme from 'theme';
-import getFormStyles from 'theme/utils/getFormStyles';
+import theme from "theme";
+import getFormStyles from "theme/utils/getFormStyles";
 
 function getValueContainerStyles(size?: Size) {
   switch (size) {
-    case 'sm':
-    case 'md': {
+    case "sm":
+    case "md": {
       return {
         paddingLeft: 4,
       };
     }
-    case 'lg': {
+    case "lg": {
       return {
         paddingLeft: 6,
       };
@@ -27,15 +27,15 @@ function getValueContainerStyles(size?: Size) {
 
 function getSingleValueStyles(size?: Size) {
   switch (size) {
-    case 'sm':
-    case 'md': {
+    case "sm":
+    case "md": {
       return {
-        top: '26px',
+        top: "26px",
       };
     }
-    case 'lg': {
+    case "lg": {
       return {
-        top: '38px',
+        top: "38px",
       };
     }
     default: {
@@ -44,13 +44,17 @@ function getSingleValueStyles(size?: Size) {
   }
 }
 
-const getChakraStyles: (colorMode: ColorMode) => ChakraStylesConfig<Option> = (colorMode) => {
-  const formColor = getFormStyles({ colorMode, colorScheme: 'blue', theme });
+const getChakraStyles: (colorMode: ColorMode) => ChakraStylesConfig<Option> = (
+  colorMode
+) => {
+  const formColor = getFormStyles({ colorMode, colorScheme: "blue", theme });
 
   return {
     control: (provided, state) => ({
       ...provided,
-      borderColor: state.hasValue ? formColor.input.filled.borderColor : formColor.input.empty.borderColor,
+      borderColor: state.hasValue
+        ? formColor.input.filled.borderColor
+        : formColor.input.empty.borderColor,
     }),
     inputContainer: (provided) => ({
       ...provided,
@@ -59,14 +63,14 @@ const getChakraStyles: (colorMode: ColorMode) => ChakraStylesConfig<Option> = (c
     }),
     valueContainer: (provided, state) => ({
       ...provided,
-      ...getValueContainerStyles(state.selectProps.size),
+      ...getValueContainerStyles(state.selectProps.size as Size | undefined),
       py: 0,
     }),
     singleValue: (provided, state) => ({
       ...provided,
       mx: 0,
-      transform: 'none',
-      ...getSingleValueStyles(state.selectProps.size),
+      transform: "none",
+      ...getSingleValueStyles(state.selectProps.size as Size | undefined),
     }),
   };
 };

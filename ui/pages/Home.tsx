@@ -3,22 +3,14 @@ import React from "react";
 
 import config from "configs/app";
 import useIsMobile from "lib/hooks/useIsMobile";
-import dynamic from "next/dynamic";
-
-const sdChainIndicators = dynamic(
-  () => import("ui/home/indicators/ChainIndicators"),
-  {
-    ssr: false,
-  }
-);
 import LatestBlocks from "ui/home/LatestBlocks";
 import LatestZkEvmL2Batches from "ui/home/LatestZkEvmL2Batches";
 import Stats from "ui/home/Stats";
 import Transactions from "ui/home/Transactions";
-import AdBanner from "ui/shared/ad/AdBanner";
-import ProfileMenuDesktop from "ui/snippets/profileMenu/ProfileMenuDesktop";
+// import AdBanner from "ui/shared/ad/AdBanner";
+// import ProfileMenuDesktop from "ui/snippets/profileMenu/ProfileMenuDesktop";
 import SearchBar from "ui/snippets/searchBar/SearchBar";
-import WalletMenuDesktop from "ui/snippets/walletMenu/WalletMenuDesktop";
+// import WalletMenuDesktop from "ui/snippets/walletMenu/WalletMenuDesktop";
 import { useTranslation } from "next-i18next";
 const rollupFeature = config.features.rollup;
 import Container from "ui/shared/layout/components/Container";
@@ -51,16 +43,6 @@ const Home = () => {
           >
             {t("Explore STO Blockchain")}
           </Heading>
-          {/* <Flex mb={{ base: 2, lg: 3 }} justifyContent="center" alignItems="center">
-            {config.UI.navigation.layout === 'vertical' && (
-              <Box display={{ base: 'none', lg: 'flex' }}>
-                {config.features.account.isEnabled && <ProfileMenuDesktop isHomePage />}
-                {config.features.blockchainInteraction.isEnabled && (
-                  <WalletMenuDesktop isHomePage />
-                )}
-              </Box>
-            )}
-          </Flex> */}
           <Box
             mx="auto"
             mb="3.5rem"
@@ -92,7 +74,6 @@ const Home = () => {
           mt={8}
           direction={{ base: "column", lg: "row" }}
           columnGap={4}
-          // rowGap={4}
           px={{ base: 4, lg: 0 }}
         >
           {rollupFeature.isEnabled && rollupFeature.type === "zkEvm" ? (

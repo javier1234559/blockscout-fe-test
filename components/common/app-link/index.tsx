@@ -3,7 +3,6 @@
 "use client";
 
 import React from "react";
-import isEqual from "react-fast-compare";
 import Link from "next/link";
 import { cn } from "service/utils/cn";
 
@@ -35,4 +34,4 @@ function AppLink(props: React.PropsWithChildren<Props>) {
   );
 }
 
-export default React.memo(AppLink, isEqual);
+export default React.memo(AppLink);
