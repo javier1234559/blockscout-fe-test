@@ -12,8 +12,7 @@ import {
 import { useTranslation } from "next-i18next";
 import { Box, chakra, Flex, Heading } from "@chakra-ui/react";
 import INDICATORS from "ui/home/indicators/utils/indicators";
-// import useFetchChartData from "ui/home/indicators/useFetchChartData";
-import React, { useEffect } from "react";
+import React from "react";
 import ContentLoader from "ui/shared/ContentLoader";
 import DataFetchAlert from "ui/shared/DataFetchAlert";
 import useFetchChartDataCustom from "ui/home/indicators/useFetchChartDataCustom";
