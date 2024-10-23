@@ -7,4 +7,5 @@ import config from "configs/app";
 // so for local development we have to use next.js api as proxy server
 export default function isNeedProxy() {
   return config.app.useProxy;
+  // return config.app.host === "localhost" && config.app.host !== config.api.host;
 }
