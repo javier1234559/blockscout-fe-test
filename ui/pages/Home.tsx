@@ -85,9 +85,9 @@ const Home = () => {
           <Stats />
           <ChainIndicators />
         </Flex>
-        {isMobile && (
+        {/* {isMobile && (
           <AdBanner mt={6} mx="auto" display="flex" justifyContent="center" />
-        )}
+        )} */}
         <Flex
           mt={8}
           direction={{ base: "column", lg: "row" }}
