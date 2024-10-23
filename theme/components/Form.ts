@@ -1,37 +1,40 @@
-import { formAnatomy as parts } from '@chakra-ui/anatomy';
-import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
-import type { StyleFunctionProps } from '@chakra-ui/theme-tools';
+import { formAnatomy as parts } from "@chakra-ui/anatomy";
+import { createMultiStyleConfigHelpers } from "@chakra-ui/styled-system";
+import type { StyleFunctionProps } from "@chakra-ui/theme-tools";
 
-import getFormStyles from '../utils/getFormStyles';
-import FancySelect from './FancySelect';
-import FormLabel from './FormLabel';
-import Input from './Input';
-import Textarea from './Textarea';
+import getFormStyles from "../utils/getFormStyles";
+import FancySelect from "./FancySelect";
+import FormLabel from "./FormLabel";
+import Input from "./Input";
+import Textarea from "./Textarea";
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys);
 
-function getFloatingVariantStylesForSize(size: 'md' | 'lg', props: StyleFunctionProps) {
+function getFloatingVariantStylesForSize(
+  size: "md" | "lg",
+  props: StyleFunctionProps
+) {
   const formStyles = getFormStyles(props);
 
   const activeLabelStyles = {
-    ...FormLabel.variants?.floating?.(props)._focusWithin,
-    ...FormLabel.sizes?.[size](props)._focusWithin,
-  } || {};
+    ...(FormLabel.variants?.floating?.(props)?._focusWithin || {}),
+    ...(FormLabel.sizes?.[size]?.(props)?._focusWithin || {}),
+  };
 
   const activeInputStyles = (() => {
     switch (size) {
-      case 'md': {
+      case "md": {
         return {
-          paddingTop: '26px',
-          paddingBottom: '10px',
+          paddingTop: "26px",
+          paddingBottom: "10px",
         };
       }
 
-      case 'lg': {
+      case "lg": {
         return {
-          paddingTop: '38px',
-          paddingBottom: '18px',
+          paddingTop: "38px",
+          paddingBottom: "18px",
         };
       }
     }
@@ -39,12 +42,12 @@ function getFloatingVariantStylesForSize(size: 'md' | 'lg', props: StyleFunction
 
   const inputPx = (() => {
     switch (size) {
-      case 'md': {
-        return '16px';
+      case "md": {
+        return "16px";
       }
 
-      case 'lg': {
-        return '24px';
+      case "lg": {
+        return "24px";
       }
     }
   })();
@@ -54,14 +57,15 @@ function getFloatingVariantStylesForSize(size: 'md' | 'lg', props: StyleFunction
       // active styles
       _focusWithin: {
         label: activeLabelStyles,
-        'input, textarea': activeInputStyles,
+        "input, textarea": activeInputStyles,
       },
-      '&[data-active=true] label': activeLabelStyles,
+      "&[data-active=true] label": activeLabelStyles,
 
       // label styles
       label: FormLabel.sizes?.[size](props) || {},
-      'input:not(:placeholder-shown) + label, textarea:not(:placeholder-shown) + label': activeLabelStyles,
-      'textarea:not(:placeholder-shown) + label': {
+      "input:not(:placeholder-shown) + label, textarea:not(:placeholder-shown) + label":
+        activeLabelStyles,
+      "textarea:not(:placeholder-shown) + label": {
         bgColor: formStyles.input.filled.bgColor,
       },
       [`
@@ -88,17 +92,19 @@ function getFloatingVariantStylesForSize(size: 'md' | 'lg', props: StyleFunction
 
       // input styles
       input: Input.sizes?.[size].field,
-      'input[aria-autocomplete=list]': FancySelect.sizes[size].field,
+      "input[aria-autocomplete=list]": FancySelect.sizes[size].field,
       textarea: Textarea.sizes?.[size],
-      'input, textarea': {
+      "input, textarea": {
         padding: inputPx,
       },
-      'input:not(:placeholder-shown), textarea:not(:placeholder-shown)': activeInputStyles,
+      "input:not(:placeholder-shown), textarea:not(:placeholder-shown)":
+        activeInputStyles,
 
       // indicator styles
-      'input:not(:placeholder-shown) + label .chakra-form__required-indicator, textarea:not(:placeholder-shown) + label .chakra-form__required-indicator': {
-        color: formStyles.placeholder.default.color,
-      },
+      "input:not(:placeholder-shown) + label .chakra-form__required-indicator, textarea:not(:placeholder-shown) + label .chakra-form__required-indicator":
+        {
+          color: formStyles.placeholder.default.color,
+        },
       [`
         input[aria-invalid=true] + label .chakra-form__required-indicator,
         textarea[aria-invalid=true] + label .chakra-form__required-indicator,
@@ -121,7 +127,7 @@ const baseStyle = definePartsStyle(() => {
   return {
     requiredIndicator: {
       marginStart: 0,
-      color: 'gray.500',
+      color: "gray.500",
     },
   };
 });
@@ -136,15 +142,15 @@ const variantFloating = definePartsStyle((props) => {
 
 const sizes = {
   lg: definePartsStyle((props) => {
-    if (props.variant === 'floating') {
-      return getFloatingVariantStylesForSize('lg', props);
+    if (props.variant === "floating") {
+      return getFloatingVariantStylesForSize("lg", props);
     }
 
     return {};
   }),
   md: definePartsStyle((props) => {
-    if (props.variant === 'floating') {
-      return getFloatingVariantStylesForSize('md', props);
+    if (props.variant === "floating") {
+      return getFloatingVariantStylesForSize("md", props);
     }
 
     return {};
@@ -160,7 +166,7 @@ const Form = defineMultiStyleConfig({
   variants,
   sizes,
   defaultProps: {
-    size: 'md',
+    size: "md",
   },
 });
 

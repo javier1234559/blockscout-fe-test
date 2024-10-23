@@ -1,5 +1,7 @@
 // Function to get all files in drop directory
-export async function getAllFileEntries(dataTransferItemList: DataTransferItemList): Promise<Array<FileSystemFileEntry>> {
+export async function getAllFileEntries(
+  dataTransferItemList: DataTransferItemList
+): Promise<Array<FileSystemFileEntry>> {
   const fileEntries: Array<FileSystemFileEntry> = [];
 
   // Use BFS to traverse entire directory/file structure
@@ -10,7 +12,10 @@ export async function getAllFileEntries(dataTransferItemList: DataTransferItemLi
     // Note webkitGetAsEntry a non-standard feature and may change
     // Usage is necessary for handling directories
     // + typescript types are kinda wrong - https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/webkitGetAsEntry
-    const item = dataTransferItemList[i].webkitGetAsEntry() as FileSystemFileEntry | FileSystemDirectoryEntry | null;
+    const item = dataTransferItemList[i].webkitGetAsEntry() as
+      | FileSystemFileEntry
+      | FileSystemDirectoryEntry
+      | null;
     item && queue.push(item);
   }
 
@@ -18,8 +23,8 @@ export async function getAllFileEntries(dataTransferItemList: DataTransferItemLi
     const entry = queue.shift();
     if (entry?.isFile) {
       fileEntries.push(entry as FileSystemFileEntry);
-    } else if (entry?.isDirectory && 'createReader' in entry) {
-      queue.push(...await readAllDirectoryEntries(entry.createReader()));
+    } else if (entry?.isDirectory && "createReader" in entry) {
+      queue.push(...(await readAllDirectoryEntries(entry.createReader())));
     }
   }
   return fileEntries;
@@ -27,7 +32,7 @@ export async function getAllFileEntries(dataTransferItemList: DataTransferItemLi
 
 // Get all the entries (files or sub-directories) in a directory
 // by calling readEntries until it returns empty array
-async function readAllDirectoryEntries(directoryReader: DirectoryReader) {
+async function readAllDirectoryEntries(directoryReader: any) {
   const entries: Array<FileSystemFileEntry> = [];
   let readEntries = await readEntriesPromise(directoryReader);
 
@@ -41,23 +46,24 @@ async function readAllDirectoryEntries(directoryReader: DirectoryReader) {
 // Wrap readEntries in a promise to make working with readEntries easier
 // readEntries will return only some of the entries in a directory
 // e.g. Chrome returns at most 100 entries at a time
-async function readEntriesPromise(directoryReader: DirectoryReader): Promise<Array<FileSystemFileEntry> | undefined> {
+async function readEntriesPromise(
+  directoryReader: any
+): Promise<Array<FileSystemFileEntry> | undefined> {
   try {
     return await new Promise((resolve, reject) => {
-      directoryReader.readEntries(
-        (fileEntry) => {
-          resolve(fileEntry as Array<FileSystemFileEntry>);
-        },
-        reject,
-      );
+      directoryReader.readEntries((fileEntry: FileSystemFileEntry[]) => {
+        resolve(fileEntry as Array<FileSystemFileEntry>);
+      }, reject);
     });
   } catch (err) {}
 }
 
-export function convertFileEntryToFile(entry: FileSystemFileEntry): Promise<File> {
+export function convertFileEntryToFile(
+  entry: FileSystemFileEntry
+): Promise<File> {
   return new Promise((resolve) => {
-    entry.file(async(file: File) => {
-    //   const newFile = new File([ file ], entry.fullPath, { lastModified: file.lastModified, type: file.type });
+    entry.file(async (file: File) => {
+      //   const newFile = new File([ file ], entry.fullPath, { lastModified: file.lastModified, type: file.type });
       resolve(file);
     });
   });

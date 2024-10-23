@@ -12,13 +12,11 @@ import {
 import { useTranslation } from "next-i18next";
 import { Box, chakra, Flex, Heading } from "@chakra-ui/react";
 import INDICATORS from "ui/home/indicators/utils/indicators";
-import useFetchChartData from "ui/home/indicators/useFetchChartData";
-import React from "react";
+// import useFetchChartData from "ui/home/indicators/useFetchChartData";
+import React, { useEffect } from "react";
 import ContentLoader from "ui/shared/ContentLoader";
 import DataFetchAlert from "ui/shared/DataFetchAlert";
-import { ChartsResources, TChainIndicator } from "ui/home/indicators/types";
-import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { TimeChartData } from "ui/shared/chart/types";
+import useFetchChartDataCustom from "ui/home/indicators/useFetchChartDataCustom";
 
 const indicators = INDICATORS.filter(({ id }) =>
   config.UI.homepage.charts.includes(id)
@@ -64,55 +62,35 @@ const chartConfig = {
 
 dayjs.extend(LocalizedFormat);
 
-// // Custom fetch function to handle CORS
-// const fetchWithCORS = async (url: string) => {
-//   const response = await fetch(url, {
-//     method: "GET",
-//     credentials: "include", // This includes cookies in the request, which might be necessary for CORS
-//     headers: {
-//       "Content-Type": "application/json",
-//       // Add any other headers required for your API
-//     },
-//   });
-
-//   console.log(response);
-
-//   if (!response.ok) {
-//     throw new Error("Network response was not ok");
-//   }
-
-//   return response.json();
-// };
-
-// function useFetchChartCustom<R extends ChartsResources>(
-//   indicator: TChainIndicator<R> | undefined
-// ): UseQueryResult<TimeChartData> {
-//   return useQuery<TimeChartData, Error>({
-//     queryKey: ["chartData", indicator?.api.resourceName, indicator],
-//     queryFn: async () => {
-//       if (!indicator) {
-//         throw new Error("Indicator is undefined");
-//       }
-//       const data = await fetchWithCORS(
-//         "https://eth.blockscout.com/api/v2/stats/charts/transactions"
-//       );
-
-//       return indicator.api.dataFn(data);
-//     },
-//     enabled: Boolean(indicator),
-//   });
-// }
-
 function TransactionHistory() {
   const { t } = useTranslation();
   const [selectedIndicator, selectIndicator] = React.useState(
     indicators[0]?.id
   );
   const indicator = indicators.find(({ id }) => id === selectedIndicator);
+  console.log("indicator ", indicator);
+  const { data, isPending, isError } = useFetchChartDataCustom(indicator);
+  console.log(JSON.stringify(data, null, 2));
 
-  const { data, isPending, isError } = useFetchChartData(indicator);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://eth.blockscout.com/api/v2/stats/charts/transactions"
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       const data = await response.json();
+  //       console.log("response ", response);
+  //       console.log("data ", data);
+  //     } catch (error) {
+  //       console.error("Fetch error: ", error);
+  //     }
+  //   };
 
-  // console.log(JSON.stringify(data, null, 2));
+  //   fetchData();
+  // }, []);
 
   const content = (() => {
     if (isPending) {
@@ -123,7 +101,7 @@ function TransactionHistory() {
       return <DataFetchAlert fontSize="xs" p={3} />;
     }
 
-    if (data[0].items.length === 0) {
+    if (!data || data[0].items.length === 0) {
       return <chakra.span fontSize="xs">no data</chakra.span>;
     }
 

@@ -1,5 +1,0 @@
-function initializeProvider() {}
-
-export {
-  initializeProvider,
-};

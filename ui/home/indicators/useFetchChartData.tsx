@@ -27,6 +27,6 @@ export default function useFetchChartData<R extends ChartsResources>(
         queryResult.data && indicator
           ? indicator.api.dataFn(queryResult.data as ResourcePayload<R>)
           : queryResult.data,
-    } as UseQueryResult<TimeChartData>;
+    } as unknown as UseQueryResult<TimeChartData>;
   }, [indicator, queryResult]);
 }
